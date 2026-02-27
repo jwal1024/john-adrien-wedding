@@ -1,0 +1,200 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>John & Adrien | Wedding in the Loire</title>
+  <meta name="description" content="Wedding website for John Walker and Adrien Rose at Chateau de Nitray, 8 August 2026." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-lang="en">
+  <div class="bg-orb orb-a" aria-hidden="true"></div>
+  <div class="bg-orb orb-b" aria-hidden="true"></div>
+
+  <header class="hero">
+    <div class="lang-switch" role="group" aria-label="Language selector">
+      <button type="button" class="lang-btn is-active" data-lang-btn="en">English</button>
+      <button type="button" class="lang-btn" data-lang-btn="fr">Francais</button>
+    </div>
+    <p class="eyebrow" data-i18n="eyebrow">Wedding Celebration</p>
+    <h1>John Walker & Adrien Rose</h1>
+    <p class="date-line" data-i18n="date_line">Saturday, 8 August 2026 | Chateau de Nitray | Touraine, France</p>
+    <div class="countdown" id="countdown" aria-live="polite"></div>
+  </header>
+
+  <nav class="tabs" aria-label="Wedding information tabs">
+    <button class="tab is-active" data-tab="home" data-i18n="tab_home">Home</button>
+    <button class="tab" data-tab="travel" data-i18n="tab_travel">Travel & Accommodation</button>
+    <button class="tab" data-tab="venue" data-i18n="tab_venue">Chateau Nitray</button>
+    <button class="tab" data-tab="loire" data-i18n="tab_loire">What to Do in the Loire</button>
+    <button class="tab" data-tab="gifts" data-i18n="tab_gifts">Gifts</button>
+  </nav>
+
+  <main>
+    <section class="panel is-active" id="home">
+      <h2 data-i18n="home_title">Welcome</h2>
+      <p data-i18n="home_intro">
+        We are delighted to invite you to celebrate our marriage at Chateau de Nitray. Join us for a summer weekend of ceremony, food, dancing, and time together in the Loire Valley.
+      </p>
+      <div class="cards">
+        <article class="card">
+          <h3 data-i18n="home_big_day">The Big Day</h3>
+          <p data-i18n="home_date"></p>
+          <p data-i18n="home_venue"></p>
+          <p data-i18n="home_style"></p>
+        </article>
+        <article class="card">
+          <h3 data-i18n="home_weekend">Weekend Plan</h3>
+          <p data-i18n="home_weekend_1"></p>
+          <p data-i18n="home_weekend_2"></p>
+          <p data-i18n="home_weekend_3"></p>
+        </article>
+      </div>
+      <figure class="photo">
+        <img src="https://gobargingwp-s3.s3.eu-west-1.amazonaws.com/wp-content/uploads/2018/09/Chateau-de-Nitray-Courtyard-Entrance.jpg" alt="Chateau de Nitray" loading="lazy" />
+        <figcaption data-i18n="photo_nitray">Chateau de Nitray</figcaption>
+      </figure>
+    </section>
+
+    <section class="panel" id="travel">
+      <h2 data-i18n="travel_title">Travel & Accommodation</h2>
+      <p data-i18n="travel_intro"></p>
+      <div class="cards">
+        <article class="card">
+          <h3 data-i18n="travel_paris_title">From Paris</h3>
+          <ul>
+            <li data-i18n="travel_paris_1"></li>
+            <li data-i18n="travel_paris_2"></li>
+            <li data-i18n="travel_paris_3"></li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3 data-i18n="travel_lille_title">From Lille</h3>
+          <ul>
+            <li data-i18n="travel_lille_1"></li>
+            <li data-i18n="travel_lille_2"></li>
+            <li data-i18n="travel_lille_3"></li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3 data-i18n="travel_stay_title">Where to Stay</h3>
+          <ul>
+            <li data-i18n="travel_stay_1"></li>
+            <li data-i18n="travel_stay_2"></li>
+          </ul>
+        </article>
+      </div>
+      <figure class="photo">
+        <img src="https://www.chateau-amboise.com/wp-content/uploads/2022/08/amboise-castle.jpg" alt="Amboise" loading="lazy" />
+        <figcaption data-i18n="photo_amboise">Amboise</figcaption>
+      </figure>
+      <p class="tip" data-i18n="travel_tip"></p>
+    </section>
+
+    <section class="panel" id="venue">
+      <h2 data-i18n="venue_title">Chateau de Nitray</h2>
+      <p data-i18n="venue_intro"></p>
+      <div class="cards">
+        <article class="card">
+          <h3 data-i18n="venue_notes_title">Venue Notes</h3>
+          <ul>
+            <li data-i18n="venue_notes_1"></li>
+            <li data-i18n="venue_notes_2"></li>
+            <li data-i18n="venue_notes_3"></li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3 data-i18n="venue_address_title">Address</h3>
+          <p data-i18n="venue_address_line"></p>
+          <p><a href="https://maps.google.com/?q=Chateau+de+Nitray" target="_blank" rel="noopener" data-i18n="venue_map">Open in Google Maps</a></p>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel" id="loire">
+      <h2 data-i18n="loire_title">What to Do in the Loire</h2>
+      <p data-i18n="loire_intro"></p>
+      <div class="cards">
+        <article class="card">
+          <h3 data-i18n="loire_wine_title">Wine Tastings</h3>
+          <ul>
+            <li data-i18n="loire_wine_1"></li>
+            <li data-i18n="loire_wine_2"></li>
+            <li data-i18n="loire_wine_3"></li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3 data-i18n="loire_velo_title">La Loire a Velo</h3>
+          <ul>
+            <li data-i18n="loire_velo_1"></li>
+            <li data-i18n="loire_velo_2"></li>
+            <li data-i18n="loire_velo_3"></li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3 data-i18n="loire_trip_title">3-Day Cycle Trip (From Amboise)</h3>
+          <ul>
+            <li data-i18n="loire_trip_1"></li>
+            <li data-i18n="loire_trip_2"></li>
+            <li data-i18n="loire_trip_3"></li>
+          </ul>
+        </article>
+      </div>
+      <figure class="photo">
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/La%20Loire%20%C3%A0%20v%C3%A9lo-panneaux.jpg" alt="La Loire a Velo" loading="lazy" />
+        <figcaption data-i18n="photo_velo">La Loire a Velo</figcaption>
+      </figure>
+    </section>
+
+    <section class="panel" id="gifts">
+      <h2 data-i18n="gifts_title">Gifts</h2>
+      <p data-i18n="gifts_intro"></p>
+      <div class="cards">
+        <article class="card">
+          <h3 data-i18n="gifts_personal_title">Personal gifts</h3>
+          <ul>
+            <li data-i18n="gifts_personal_1"></li>
+            <li data-i18n="gifts_personal_2"></li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3 data-i18n="gifts_exp_title">Experiences & Memories</h3>
+          <ul>
+            <li data-i18n="gifts_exp_1"></li>
+            <li data-i18n="gifts_exp_2"></li>
+            <li data-i18n="gifts_exp_3"></li>
+            <li data-i18n="gifts_exp_4"></li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3 data-i18n="gifts_home_title">Home & Everyday Life</h3>
+          <ul>
+            <li data-i18n="gifts_home_1"></li>
+            <li data-i18n="gifts_home_2"></li>
+            <li data-i18n="gifts_home_3"></li>
+            <li data-i18n="gifts_home_4"></li>
+            <li data-i18n="gifts_home_5"></li>
+            <li data-i18n="gifts_home_6"></li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3 data-i18n="gifts_charity_title">Charities</h3>
+          <ul>
+            <li data-i18n="gifts_charity_1"></li>
+            <li data-i18n="gifts_charity_2"></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p data-i18n="footer_line">With love, John & Adrien</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
