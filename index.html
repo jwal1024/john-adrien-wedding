@@ -21,9 +21,24 @@
     </div>
     <p class="eyebrow" data-i18n="eyebrow">Wedding Celebration</p>
     <div class="name-flourish">
-      <span class="rose-cluster rose-left" aria-hidden="true"></span>
+      <!-- inline SVG decorative rose -->
+      <svg class="rose-cluster" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 120" aria-hidden="true">
+        <g fill="none" stroke="none">
+          <path d="M30 60 C30 30, 70 20, 90 40 C110 20, 150 30, 150 60 C150 90, 110 100, 90 80 C70 100, 30 90, 30 60 Z" fill="#9b4b4b"/>
+          <path d="M92 78 C96 86, 110 90, 118 86 C126 82, 132 70, 128 62 C124 54, 112 50, 104 54 C96 58, 88 70, 92 78 Z" fill="#c76b6b" opacity="0.95"/>
+          <rect x="74" y="76" width="6" height="34" rx="3" ry="3" fill="#4a6f46" transform="rotate(-12 77 93)"/>
+          <rect x="86" y="76" width="6" height="38" rx="3" ry="3" fill="#4a6f46" transform="rotate(8 89 95)"/>
+        </g>
+      </svg>
       <h1>John Walker & Adrien Rose</h1>
-      <span class="rose-cluster rose-right" aria-hidden="true"></span>
+      <svg class="rose-cluster rose-right" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 120" aria-hidden="true">
+        <g fill="none" stroke="none">
+          <path d="M30 60 C30 30, 70 20, 90 40 C110 20, 150 30, 150 60 C150 90, 110 100, 90 80 C70 100, 30 90, 30 60 Z" fill="#9b4b4b"/>
+          <path d="M92 78 C96 86, 110 90, 118 86 C126 82, 132 70, 128 62 C124 54, 112 50, 104 54 C96 58, 88 70, 92 78 Z" fill="#c76b6b" opacity="0.95"/>
+          <rect x="74" y="76" width="6" height="34" rx="3" ry="3" fill="#4a6f46" transform="rotate(-12 77 93)"/>
+          <rect x="86" y="76" width="6" height="38" rx="3" ry="3" fill="#4a6f46" transform="rotate(8 89 95)"/>
+        </g>
+      </svg>
     </div>
     <p class="date-line" data-i18n="date_line">Saturday, 8 August 2026 | Chateau de Nitray | Touraine, France</p>
     <div class="countdown" id="countdown" aria-live="polite"></div>
@@ -147,8 +162,8 @@
           </ul>
         </article>
       </div>
-      <figure class="photo">
-        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/La%20Loire%20%C3%A0%20v%C3%A9lo-panneaux.jpg" alt="La Loire a Velo" loading="lazy" />
+      <figure class="photo photo-loire">
+        <img src="https://paulette.bike/app/uploads/2025/03/1-9be6aa1096308eee7dce377f32957252.png.avif" alt="La Loire a Velo" loading="lazy" />
         <figcaption data-i18n="photo_velo">La Loire a Velo</figcaption>
       </figure>
     </section>
