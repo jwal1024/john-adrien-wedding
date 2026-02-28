@@ -125,6 +125,15 @@ h1 {
   transform: scaleX(-1);
 }
 
+/* rose vines/flourish styling */
+.rose-vine {
+  width: 160px;
+  height: 64px;
+  display: block;
+}
+.rose-left { }
+.rose-right { transform: scaleX(-1); }
+
 .rose-right {
   transform: scaleX(-1);
 }
@@ -273,6 +282,62 @@ ul {
 .photo-loire {
   /* make sure figure expands to fit reduced image height */
   min-height: 300px;
+}
+
+/* Venue gallery */
+.venue-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.9rem;
+  margin-top: 1rem;
+}
+.venue-gallery figure {
+  margin: 0;
+}
+.venue-gallery img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  box-shadow: 0 8px 18px rgba(58, 40, 22, 0.06);
+}
+.venue-gallery figcaption {
+  margin-top: 0.45rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+@media (max-width: 720px) {
+  .venue-gallery { grid-template-columns: 1fr; }
+  .venue-gallery img { height: 200px; }
+}
+
+/* Home gallery (side-by-side portraits) */
+.home-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 1rem;
+  align-items: start;
+}
+.home-gallery figure { margin: 0; }
+.home-gallery img {
+  width: 100%;
+  height: 460px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+}
+.home-gallery figcaption {
+  margin-top: 0.5rem;
+  text-align: center;
+  color: var(--muted);
+}
+
+@media (max-width: 720px) {
+  .home-gallery { grid-template-columns: 1fr; }
+  .home-gallery img { height: 320px; }
 }
 
 .photo figcaption {

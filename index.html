@@ -21,22 +21,30 @@
     </div>
     <p class="eyebrow" data-i18n="eyebrow">Wedding Celebration</p>
     <div class="name-flourish">
-      <!-- left vine decoration -->
-      <svg class="vine-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 80" aria-hidden="true">
-        <path d="M0 40 C40 0, 80 0, 120 40 S200 80, 240 40" stroke="#8f1f43" stroke-width="4" fill="none"/>
-        <circle cx="20" cy="40" r="12" fill="#c76b6b"/>
-        <circle cx="220" cy="40" r="12" fill="#c76b6b"/>
-        <path d="M60 40 l10 -10 l10 10" stroke="#4a6f46" stroke-width="3" fill="none"/>
-        <path d="M180 40 l10 -10 l10 10" stroke="#4a6f46" stroke-width="3" fill="none"/>
+      <!-- rose vine (left) -->
+      <svg class="rose-vine rose-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 80" aria-hidden="true">
+        <path d="M0 50 C50 10, 110 10, 150 50 C170 70, 210 70, 260 50" stroke="#7a1f2f" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <g fill="#b85b62">
+          <circle cx="18" cy="52" r="8"/>
+          <circle cx="66" cy="36" r="6"/>
+        </g>
+        <g stroke="#3f6a4a" stroke-width="2" fill="none">
+          <path d="M36 46 l8 -8"/>
+          <path d="M96 44 l10 -10"/>
+        </g>
       </svg>
       <h1>John Walker & Adrien Rose</h1>
-      <!-- right flourish decoration (mirrored vine) -->
-      <svg class="vine-right" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 80" aria-hidden="true">
-        <path d="M0 40 C40 0, 80 0, 120 40 S200 80, 240 40" stroke="#8f1f43" stroke-width="4" fill="none"/>
-        <circle cx="20" cy="40" r="12" fill="#c76b6b"/>
-        <circle cx="220" cy="40" r="12" fill="#c76b6b"/>
-        <path d="M60 40 l10 -10 l10 10" stroke="#4a6f46" stroke-width="3" fill="none"/>
-        <path d="M180 40 l10 -10 l10 10" stroke="#4a6f46" stroke-width="3" fill="none"/>
+      <!-- rose flourish (right, mirrored) -->
+      <svg class="rose-vine rose-right" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 80" aria-hidden="true">
+        <path d="M0 50 C50 10, 110 10, 150 50 C170 70, 210 70, 260 50" stroke="#7a1f2f" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <g fill="#b85b62">
+          <circle cx="18" cy="52" r="8"/>
+          <circle cx="66" cy="36" r="6"/>
+        </g>
+        <g stroke="#3f6a4a" stroke-width="2" fill="none">
+          <path d="M36 46 l8 -8"/>
+          <path d="M96 44 l10 -10"/>
+        </g>
       </svg>
     </div>
     <p class="date-line" data-i18n="date_line">Saturday, 8 August 2026 | Chateau de Nitray | Touraine, France</p>
@@ -72,10 +80,15 @@
           <p data-i18n="home_weekend_3"></p>
         </article>
       </div>
-      <figure class="photo">
-        <img src="https://gobargingwp-s3.s3.eu-west-1.amazonaws.com/wp-content/uploads/2018/09/Chateau-de-Nitray-Courtyard-Entrance.jpg" alt="Chateau de Nitray" loading="lazy" />
-        <figcaption data-i18n="photo_nitray">Chateau de Nitray</figcaption>
-      </figure>
+      <div class="home-gallery">
+        <figure>
+          <img src="adrien_1.jpeg" alt="Adrien family photo 1" loading="lazy" />
+        </figure>
+        <figure>
+          <img src="adrien_2.jpeg" alt="Adrien family photo 2" loading="lazy" />
+        </figure>
+        <figcaption class="home-gallery-caption" data-i18n="photo_welcome">A welcome from our family to yours</figcaption>
+      </div>
     </section>
 
     <section class="panel" id="travel">
@@ -136,6 +149,17 @@
           <p data-i18n="venue_address_line"></p>
           <p><a href="https://maps.google.com/?q=Chateau+de+Nitray" target="_blank" rel="noopener" data-i18n="venue_map">Open in Google Maps</a></p>
         </article>
+      </div>
+    
+      <div class="venue-gallery" aria-hidden="false">
+        <figure>
+          <img src="Nitray_2.jpeg" alt="Chateau Nitray entrance" loading="lazy" />
+          <figcaption>Nitray — entrance</figcaption>
+        </figure>
+        <figure>
+          <img src="Nitray_4.jpeg" alt="Chateau Nitray courtyard" loading="lazy" />
+          <figcaption>Nitray — courtyard</figcaption>
+        </figure>
       </div>
     </section>
 
