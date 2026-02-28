@@ -115,6 +115,16 @@ h1 {
   filter: drop-shadow(0 9px 9px rgba(125, 58, 68, 0.18));
 }
 
+/* new vine/flourish classes */
+.vine-left,
+.vine-right {
+  width: 160px;
+  height: 52px;
+}
+.vine-right {
+  transform: scaleX(-1);
+}
+
 .rose-right {
   transform: scaleX(-1);
 }
@@ -239,10 +249,11 @@ ul {
 
 .photo {
   margin: 1.2rem 0 0;
+  text-align: center;
 }
 
 .photo img {
-  display: block;
+  display: inline-block;
   width: 100%;
   max-height: 420px;
   object-fit: cover;
@@ -253,15 +264,50 @@ ul {
 
 /* Slightly smaller height for the Loire image to avoid scaling blur */
 .photo-loire img {
-  max-height: 320px;
-  height: auto;
+  /* shrink image to decrease blur */
+  max-height: 280px;
+  width: auto;
   object-fit: cover;
+}
+
+.photo-loire {
+  /* make sure figure expands to fit reduced image height */
+  min-height: 300px;
 }
 
 .photo figcaption {
   margin-top: 0.45rem;
   font-size: 0.9rem;
   color: var(--muted);
+}
+
+/* Schedule timeline styling */
+.schedule-timeline {
+  margin-top: 1rem;
+}
+
+.timeline-event {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.timeline-event:last-child {
+  border-bottom: none;
+}
+
+.timeline-time {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--accent);
+  min-width: 60px;
+}
+
+.timeline-activity {
+  flex: 1;
+  color: var(--ink);
 }
 
 .tip {
@@ -399,6 +445,11 @@ footer {
   .rose-cluster {
     width: 74px;
     height: 45px;
+  }
+  .vine-left,
+  .vine-right {
+    width: 100px;
+    height: 32px;
   }
 
   .photo {
