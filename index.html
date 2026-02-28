@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body data-lang="en">
+<body data-lang="en" data-frame="corners">
   <div class="bg-orb orb-a" aria-hidden="true"></div>
   <div class="bg-orb orb-b" aria-hidden="true"></div>
 
@@ -20,32 +20,14 @@
       <button type="button" class="lang-btn" data-lang-btn="fr">Francais</button>
     </div>
     <p class="eyebrow" data-i18n="eyebrow">Wedding Celebration</p>
-    <div class="name-flourish">
-      <!-- rose vine (left) -->
-      <svg class="rose-vine rose-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 80" aria-hidden="true">
-        <path d="M0 50 C50 10, 110 10, 150 50 C170 70, 210 70, 260 50" stroke="#7a1f2f" stroke-width="4" fill="none" stroke-linecap="round"/>
-        <g fill="#b85b62">
-          <circle cx="18" cy="52" r="8"/>
-          <circle cx="66" cy="36" r="6"/>
-        </g>
-        <g stroke="#3f6a4a" stroke-width="2" fill="none">
-          <path d="M36 46 l8 -8"/>
-          <path d="M96 44 l10 -10"/>
-        </g>
-      </svg>
+    <div class="name-heading">
+      <span class="floral-corner floral-corner-left" aria-hidden="true">
+        <img src="rose-flourish.png" alt="" />
+      </span>
       <h1>John Walker & Adrien Rose</h1>
-      <!-- rose flourish (right, mirrored) -->
-      <svg class="rose-vine rose-right" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 80" aria-hidden="true">
-        <path d="M0 50 C50 10, 110 10, 150 50 C170 70, 210 70, 260 50" stroke="#7a1f2f" stroke-width="4" fill="none" stroke-linecap="round"/>
-        <g fill="#b85b62">
-          <circle cx="18" cy="52" r="8"/>
-          <circle cx="66" cy="36" r="6"/>
-        </g>
-        <g stroke="#3f6a4a" stroke-width="2" fill="none">
-          <path d="M36 46 l8 -8"/>
-          <path d="M96 44 l10 -10"/>
-        </g>
-      </svg>
+      <span class="floral-corner floral-corner-right" aria-hidden="true">
+        <img src="rose-flourish.png" alt="" />
+      </span>
     </div>
     <p class="date-line" data-i18n="date_line">Saturday, 8 August 2026 | Chateau de Nitray | Touraine, France</p>
     <div class="countdown" id="countdown" aria-live="polite"></div>
@@ -87,7 +69,7 @@
         <figure>
           <img src="adrien_2.jpeg" alt="Adrien family photo 2" loading="lazy" />
         </figure>
-        <figcaption class="home-gallery-caption" data-i18n="photo_welcome">A welcome from our family to yours</figcaption>
+        <figcaption class="home-gallery-caption tip" data-i18n="photo_welcome">A welcome from our family to yours</figcaption>
       </div>
     </section>
 
@@ -132,8 +114,6 @@
         <article class="card">
           <h3 data-i18n="venue_history_title">History</h3>
           <p data-i18n="venue_history_1"></p>
-          <p data-i18n="venue_history_2"></p>
-          <p><a href="https://www.chateau-nitray.fr/" target="_blank" rel="noopener" data-i18n="venue_website">Visit the official website</a></p>
         </article>
         <article class="card">
           <h3 data-i18n="venue_notes_title">Venue Notes</h3>
@@ -147,6 +127,8 @@
         <article class="card">
           <h3 data-i18n="venue_address_title">Address</h3>
           <p data-i18n="venue_address_line"></p>
+          <p data-i18n="venue_address_more"></p>
+          <p><a href="https://www.chateau-nitray.fr/" target="_blank" rel="noopener" data-i18n="venue_website">Visit the official website</a></p>
           <p><a href="https://maps.google.com/?q=Chateau+de+Nitray" target="_blank" rel="noopener" data-i18n="venue_map">Open in Google Maps</a></p>
         </article>
       </div>
