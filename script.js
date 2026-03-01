@@ -68,6 +68,7 @@ const translations = {
     travel_stay_2: 'Loches: charming medieval town with quieter, boutique options.',
     photo_amboise: 'Amboise',
     travel_tip: 'August is high season in the Loire, so book accommodation and trains early.',
+    travel_sncf_link: 'Book trains on SNCF Connect',
     venue_title: 'Chateau de Nitray',
     venue_history_title: 'History',
     venue_history_1: 'Nitray castle was built in the 16th century, likely to replace an older castle dating from the 13th century. Nitray castle has produced wines since the 18th century. It follows traditional wine production methods, and only produces organic wines. These wines carry the label of the local region, AOC Touraine.',
@@ -106,11 +107,12 @@ const translations = {
     photo_velo: 'La Loire a Velo',
     gifts_title: 'Gifts',
     gifts_intro: 'Your presence is the best gift. If you would like to give something, the following options would be lovely. Gifts need not be expensive! We would love something that reminds us of you. For example, we would love a second-hand book you have read, with a note explaining what it means to you.',
+    gifts_intro_2: 'We will update this page with a link to select gift options and track what others have selected.',
     gifts_personal_title: 'Personal gifts',
     gifts_personal_1: 'A second-hand book you have read, with a short personal note',
     gifts_personal_2: 'Something artistic that you have liked (or made!) and a description of why',
     gifts_exp_title: 'Experiences & Memories',
-    gifts_exp_1: 'Contribution to a honeymoon experience (special dinners, local excursions, or cultural visits)',
+    gifts_exp_1: 'Contribution to our honeymoon and family trip: we are planning two weeks in Japan and two weeks in Australia, including a celebration with John\'s family.',
     gifts_exp_2: 'Cooking or wine-tasting experience to enjoy together',
     gifts_exp_3: 'Theatre, concert, or museum tickets',
     gifts_exp_4: 'Contribution toward future travels',
@@ -194,6 +196,7 @@ const translations = {
     travel_stay_2: 'Loches : charmante ville médiévale avec des options plus calmes et de caractère.',
     photo_amboise: 'Amboise',
     travel_tip: 'Août est la haute saison en Loire : réservez hébergement et trains le plus tôt possible.',
+    travel_sncf_link: 'Réserver des trains sur SNCF Connect',
     venue_title: 'Château de Nitray',
     venue_history_title: 'Histoire',
     venue_history_1: 'Le château de Nitray a été construit au XVIe siècle, probablement pour remplacer un ancien château datant du XIIIe siècle. Le château de Nitray produit du vin depuis le XVIIIe siècle. Il suit des méthodes de production traditionnelles et ne produit que des vins biologiques. Ces vins portent l\'appellation de la région locale, AOC Touraine.',
@@ -234,11 +237,12 @@ const translations = {
     photo_welcome: 'Un accueil de notre famille à la vôtre',
     gifts_title: 'Cadeaux',
     gifts_intro: 'Votre présence est déjà le plus beau cadeau. Si vous souhaitez offrir quelque chose, les options suivantes nous feraient très plaisir. Les cadeaux n\'ont pas besoin d\'être chers. Nous aimerions surtout quelque chose qui nous fasse penser à vous. Par exemple, nous serions ravis de recevoir un livre d\'occasion que vous avez lu, avec un mot expliquant ce qu\'il représente pour vous.',
+    gifts_intro_2: 'Nous mettrons cette page à jour avec un lien pour choisir des options de cadeaux et suivre ce que les autres ont déjà sélectionné.',
     gifts_personal_title: 'Cadeaux personnels',
     gifts_personal_1: 'Un livre d\'occasion que vous avez lu, avec un petit mot personnel.',
     gifts_personal_2: 'Quelque chose d\'artistique que vous avez aimé (ou créé), avec un mot expliquant pourquoi.',
     gifts_exp_title: 'Expériences et souvenirs',
-    gifts_exp_1: 'Contribution à une expérience de voyage de noces (dîner spécial, excursion locale ou visite culturelle).',
+    gifts_exp_1: 'Contribution à notre voyage de noces et familial : nous prévoyons deux semaines au Japon et deux semaines en Australie, avec une célébration avec la famille de John.',
     gifts_exp_2: 'Expérience de cuisine ou de dégustation de vin à vivre ensemble.',
     gifts_exp_3: 'Billets de théâtre, concert ou musée.',
     gifts_exp_4: 'Contribution à de futurs voyages.',
@@ -427,5 +431,4 @@ if (rsvpForm) {
     }
   });
 }
-
 
