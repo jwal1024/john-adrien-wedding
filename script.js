@@ -353,7 +353,7 @@ function updateCountdown() {
   const diff = weddingDate - now;
 
   if (diff <= 0) {
-    countdownEl.textContent = currentLang === 'fr' ? 'C\'est le jour du mariage !' : 'It is wedding time.';
+    countdownEl.textContent = currentLang === 'fr' ? 'C\'est le jour du mariage !' : 'It is the day of the marriage!';
     return;
   }
 
