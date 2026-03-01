@@ -322,15 +322,18 @@ ul {
 
 /* Slightly smaller height for the Loire image to avoid scaling blur */
 .photo-loire img {
-  /* shrink image to decrease blur */
+  /* Keep intrinsic width for sharpness, but never overflow the viewport */
   max-height: 280px;
   width: auto;
-  object-fit: cover;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  object-fit: contain;
 }
 
 .photo-loire {
-  /* make sure figure expands to fit reduced image height */
-  min-height: 300px;
+  min-height: 0;
 }
 
 /* Venue gallery */
@@ -385,6 +388,7 @@ ul {
 @media (max-width: 720px) {
   .home-gallery { grid-template-columns: 1fr; }
   .home-gallery img { height: 320px; }
+  .photo-loire img { max-height: 220px; width: auto; max-width: 100%; }
 }
 
 .photo figcaption {
@@ -428,6 +432,71 @@ ul {
   border-left: 4px solid var(--accent-soft);
   padding: 0.8rem 0.9rem;
   border-radius: 8px;
+}
+
+.rsvp-card {
+  margin-top: 1rem;
+  border: 1px solid #e9dfd3;
+  border-radius: 16px;
+  background: linear-gradient(180deg, #ffffff 0%, #fffaf2 100%);
+  padding: 1rem;
+  box-shadow: 0 8px 18px rgba(58, 40, 22, 0.07);
+}
+
+.rsvp-card h3 {
+  margin: 0 0 0.5rem;
+}
+
+.rsvp-form {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.rsvp-form.is-complete > :not(#rsvp-status) {
+  display: none;
+}
+
+.rsvp-form label {
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.rsvp-form input,
+.rsvp-form textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 0.55rem 0.7rem;
+  font: inherit;
+  color: var(--ink);
+  background: #fff;
+}
+
+.rsvp-submit {
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 0.5rem 0.92rem;
+  cursor: pointer;
+  font-weight: 600;
+  width: fit-content;
+}
+
+.rsvp-submit:hover,
+.rsvp-submit:focus-visible {
+  border-color: var(--accent-soft);
+}
+
+#rsvp-status {
+  min-height: 1.2em;
+  margin: 0.2rem 0 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.faq-contact-line {
+  margin: 0.45rem 0 0;
 }
 
 a {

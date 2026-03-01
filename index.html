@@ -17,7 +17,7 @@
   <header class="hero">
     <div class="lang-switch" role="group" aria-label="Language selector">
       <button type="button" class="lang-btn is-active" data-lang-btn="en">English</button>
-      <button type="button" class="lang-btn" data-lang-btn="fr">Francais</button>
+      <button type="button" class="lang-btn" data-lang-btn="fr">Français</button>
     </div>
     <p class="eyebrow" data-i18n="eyebrow">Wedding Celebration</p>
     <div class="name-heading">
@@ -40,6 +40,8 @@
     <button class="tab" data-tab="schedule" data-i18n="tab_schedule">Schedule</button>
     <button class="tab" data-tab="loire" data-i18n="tab_loire">What to Do in the Loire</button>
     <button class="tab" data-tab="gifts" data-i18n="tab_gifts">Gifts</button>
+    <button class="tab" data-tab="faq" data-i18n="tab_faq">FAQ</button>
+    <button class="tab" data-tab="rsvp" id="tab-rsvp" data-i18n="tab_rsvp">Friday RSVP</button>
   </nav>
 
   <main>
@@ -57,9 +59,12 @@
         </article>
         <article class="card">
           <h3 data-i18n="home_weekend">Weekend Plan</h3>
-          <p data-i18n="home_weekend_1"></p>
+          <p id="home-weekend-rsvp">
+            <span data-i18n="home_weekend_1_intro"></span><a href="#rsvp" data-i18n="home_weekend_1_link">RSVP here</a><span data-i18n="home_weekend_1_suffix"></span>
+          </p>
           <p data-i18n="home_weekend_2"></p>
           <p data-i18n="home_weekend_3"></p>
+          <p class="home-faq-link"><a href="#faq" data-i18n="home_weekend_faq_link">See FAQ</a></p>
         </article>
       </div>
       <div class="home-gallery">
@@ -81,6 +86,7 @@
           <h3 data-i18n="travel_paris_title">From Paris</h3>
           <ul>
             <li data-i18n="travel_paris_1"></li>
+            <li><a href="https://www.sncf-connect.com/en-en/train/route/paris/saint-pierre-des-corps" target="_blank" rel="noopener" data-i18n="travel_paris_link"></a></li>
             <li data-i18n="travel_paris_2"></li>
             <li data-i18n="travel_paris_3"></li>
           </ul>
@@ -250,6 +256,51 @@
           </ul>
         </article>
       </div>
+    </section>
+
+    <section class="panel" id="faq">
+      <h2 data-i18n="faq_title">FAQ</h2>
+      <div class="cards">
+        <article class="card">
+          <h3 data-i18n="faq_general_title">General</h3>
+          <p><strong data-i18n="faq_q_arrival"></strong><br><span data-i18n="faq_a_arrival"></span></p>
+          <p><strong data-i18n="faq_q_children"></strong><br><span data-i18n="faq_a_children"></span></p>
+          <p><strong data-i18n="faq_q_plus_one"></strong><br><span data-i18n="faq_a_plus_one"></span></p>
+          <p class="tip" data-i18n="faq_rsvp_note"></p>
+        </article>
+        <article class="card">
+          <h3 data-i18n="faq_transport_title">Transport</h3>
+          <p><strong data-i18n="faq_q_car"></strong><br><span data-i18n="faq_a_car"></span></p>
+          <p><strong data-i18n="faq_q_parking"></strong><br><span data-i18n="faq_a_parking"></span></p>
+          <p><strong data-i18n="faq_q_dress"></strong><br><span data-i18n="faq_a_dress"></span></p>
+        </article>
+      </div>
+      <p class="tip" data-i18n="faq_contact_prompt">Any more questions? Contact us:</p>
+      <p class="faq-contact-line">
+        Adrien: <a href="tel:+33625530442">+33 6 25 53 04 42</a> |
+        <a href="mailto:Adrien.rose59@gmail.com">Adrien.rose59@gmail.com</a>
+      </p>
+      <p class="faq-contact-line">
+        John: <a href="tel:+447707231969">+44 7707 231969</a> |
+        <a href="mailto:johnhenrywalker.4@gmail.com">johnhenrywalker.4@gmail.com</a>
+      </p>
+    </section>
+
+    <section class="panel" id="rsvp">
+      <h2 data-i18n="rsvp_title">Friday Dinner RSVP</h2>
+      <p data-i18n="rsvp_intro">Please let us know how many guests are joining Friday dinner and any dietary requirements.</p>
+      <section class="rsvp-card" id="rsvp-form-en">
+        <form class="rsvp-form" id="rsvp-form" action="#" method="post">
+          <label for="rsvp-name" data-i18n="rsvp_name_label">Your name</label>
+          <input id="rsvp-name" name="name" type="text" required />
+          <label for="rsvp-attendees" data-i18n="rsvp_attendees_label">Number of attendees</label>
+          <input id="rsvp-attendees" name="attendees" type="number" min="1" step="1" required />
+          <label for="rsvp-dietary" data-i18n="rsvp_dietary_label">Dietary information</label>
+          <textarea id="rsvp-dietary" name="dietary" rows="3"></textarea>
+          <button type="submit" class="rsvp-submit" data-i18n="rsvp_submit">Send RSVP</button>
+          <p id="rsvp-status" aria-live="polite"></p>
+        </form>
+      </section>
     </section>
   </main>
 
