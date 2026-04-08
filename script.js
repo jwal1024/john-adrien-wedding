@@ -4,12 +4,14 @@ const langButtons = document.querySelectorAll('.lang-btn');
 const i18nNodes = document.querySelectorAll('[data-i18n]');
 const countdownEl = document.getElementById('countdown');
 const homeWeekendRsvpLine = document.getElementById('home-weekend-rsvp');
+const homeGalleryCaption = document.getElementById('home-gallery-caption');
 const rsvpTabButton = document.getElementById('tab-rsvp');
 const rsvpPanel = document.getElementById('rsvp');
 const rsvpForm = document.getElementById('rsvp-form');
 const rsvpStatus = document.getElementById('rsvp-status');
 const rsvpQuickLinks = document.querySelectorAll('a[href="#rsvp"]');
 const faqQuickLinks = document.querySelectorAll('a[href="#faq"]');
+const scheduleEvent6 = document.getElementById('schedule-event-6');
 let rsvpSubmitting = false;
 
 let currentLang = 'en';
@@ -30,7 +32,7 @@ const translations = {
     home_title: 'Welcome',
     home_intro: 'We are delighted to invite you to celebrate our marriage at Chateau de Nitray. Join us for a summer weekend of ceremony, food, dancing, and time together in the Loire Valley.',
     home_big_day: 'The Big Day',
-    home_date: 'Date: Saturday, 8 August 2026',
+    home_date: 'Date: Saturday, 8 August 2026, from 3 pm (tbc)',
     home_venue: 'Venue: Chateau de Nitray, Athee-sur-Cher',
     home_style: 'Dress code: Colorful, comfortable for the summer and flat shoes for walking on grass. Wear something that brings you joy: this is a wedding with no expectation of a suit.',
     home_weekend: 'Weekend Plan',
@@ -55,17 +57,18 @@ const translations = {
     travel_title: 'Travel & Accommodation',
     travel_intro: 'Chateau de Nitray is in the Loire Valley between Tours and Amboise. The closest rail stop is Saint-Martin-le-Beau, while Amboise and Saint-Pierre-des-Corps are the easiest larger stations for onward transfers and car hire.',
     travel_paris_title: 'From Paris',
-    travel_paris_1: 'Fastest route for most guests: Paris Montparnasse → Saint-Pierre-des-Corps (Tours TGV station).',
+    travel_paris_1: 'Fastest route for most guests: Paris Montparnasse → Saint-Pierre-des-Corps or Tours TGV station.',
     travel_paris_link: 'Book this train route on SNCF Connect',
     travel_paris_2: 'Road: approximately 2h30 to 3h00 depending on traffic.',
     travel_paris_3: 'Car hire is available in the Tours / Saint-Pierre-des-Corps area, and local transfer to Chateau de Nitray is usually around 20 to 25 minutes.',
     travel_lille_title: 'From Lille',
-    travel_lille_1: 'Train: usually via Paris, then TGV to Tours area (around 3h00 to 4h00 total).',
-    travel_lille_2: 'Road: approximately 4h30 to 5h30 depending on traffic.',
-    travel_lille_3: 'Saint-Martin-le-Beau remains the closest local stop near the venue.',
+    travel_lille_1: 'Train: direct train from Lille to Saint-Pierre-des-Corps.',
+    travel_lille_2: 'Road: approximately 5 to 6h depending on traffic.',
+    travel_lille_3: 'From the station, continue by car hire or taxi.',
     travel_stay_title: 'Where to Stay',
-    travel_stay_1: 'Amboise: walkable center and a wide choice of hotels and guesthouses.',
-    travel_stay_2: 'Loches: charming medieval town with quieter, boutique options.',
+    travel_stay_1: 'From the UK: Eurostar from London to Paris and then follow the Paris instructions above. Please do not take the plane.',
+    travel_stay_2: 'Amboise and Loches are both great towns to visit, with beautiful historic buildings, and both are around a 30-minute drive from the venue.',
+    travel_stay_3: 'We have a personal preference for Amboise, which sits directly on the Loire.',
     photo_amboise: 'Amboise',
     travel_tip: 'August is high season in the Loire, so book accommodation and trains early.',
     travel_sncf_link: 'Book trains on SNCF Connect',
@@ -78,6 +81,7 @@ const translations = {
     venue_notes_2: 'Indoor spaces for the dinner and dancing that follows',
     venue_notes_3: 'A small forest for an afternoon stroll',
     venue_notes_4: 'Bring clothing that is appropriate for hot weather and comfortable shoes',
+    venue_notes_5: 'Indoor spaces are only accessible via stairs. Please contact us if you think you might need support in navigating stairs.',
     venue_address_title: 'Address',
     venue_address_line: 'Chateau de Nitray, 31 Nitray, 37270 Athee-sur-Cher, France',
     venue_address_more: 'More information about the castle and estate is available at the link below.',
@@ -100,10 +104,10 @@ const translations = {
     loire_velo_1: 'A famous long-distance cycle route with mostly flat riverside sections.',
     loire_velo_2: 'Great for mixed groups; e-bikes are widely available.',
     loire_velo_3: 'Suitable for easy day rides or multi-day itineraries.',
-    loire_trip_title: '3-Day Cycle Trip (From Amboise)',
-    loire_trip_1: 'Day 1: Amboise to Chenonceaux loop (vineyards and villages).',
-    loire_trip_2: 'Day 2: Amboise to Tours on La Loire a Velo.',
-    loire_trip_3: 'Day 3: Tours to Vouvray and back toward Amboise.',
+    loire_trip_title: 'Cycling itinerary 3 days (from Amboise)',
+    loire_trip_1: 'Itinerary to be confirmed, we recommend booking an accommodation in Amboise for the duration of the wedding and until Wednesday morning.',
+    loire_trip_2: '',
+    loire_trip_3: '',
     photo_velo: 'La Loire a Velo',
     gifts_title: 'Gifts',
     gifts_intro: 'Your presence is the best gift. If you would like to give something, the following options would be lovely. Gifts need not be expensive! We would love something that reminds us of you. For example, we would love a second-hand book you have read, with a note explaining what it means to you.',
@@ -132,12 +136,10 @@ const translations = {
     faq_a_arrival: 'Guest arrival begins at 14:30. We recommend arriving promptly so everyone is seated comfortably before the ceremony.',
     faq_q_children: 'Are children welcome?',
     faq_a_children: 'Yes - children are very welcome.',
-    faq_q_plus_one: 'Can I bring a plus-one?',
-    faq_a_plus_one: 'Plus-ones are welcome where included.',
     faq_rsvp_note: 'Please make sure all guests (including children and plus-ones) were included in your RSVP. If you are unsure, just contact us and we will confirm.',
     faq_transport_title: 'Transport',
     faq_q_car: 'Do I need a car?',
-    faq_a_car: 'Not necessarily. Many guests will manage perfectly with trains and taxis, but hiring a car gives more flexibility. We intend to provide shuttles to and from neighbouring towns on the night of the wedding.',
+    faq_a_car: 'Not necessarily. Many guests will manage perfectly with trains and taxis, but hiring a car gives more flexibility. We intend to provide a limited shuttle service to and from neighbouring towns on the night of the wedding.',
     faq_q_parking: 'Will there be parking at the venue?',
     faq_a_parking: 'Yes - parking will be available.',
     faq_q_dress: 'Dress code?',
@@ -152,22 +154,22 @@ const translations = {
     tab_travel: 'Voyage et hébergement',
     tab_venue: 'Château Nitray',
     tab_schedule: 'Programme',
-    tab_loire: 'Que faire en Loire',
+    tab_loire: 'Que faire dans la Loire',
     tab_gifts: 'Cadeaux',
     tab_faq: 'FAQ',
     tab_rsvp: '',
     home_title: 'Bienvenue',
     home_intro: 'Nous sommes ravis de vous inviter à célébrer notre mariage au Château de Nitray. Rejoignez-nous pour un week-end d\'été en Val de Loire, avec cérémonie, repas, danse et moments partagés.',
     home_big_day: 'Le grand jour',
-    home_date: 'Date : samedi 8 août 2026',
+    home_date: 'Date : samedi 8 août 2026, à partir de 15 h (à confirmer)',
     home_venue: 'Lieu : Château de Nitray, Athée-sur-Cher',
-    home_style: 'Code vestimentaire : coloré, confortable pour l\'été et des chaussures plates pour marcher sur l\'herbe. Portez quelque chose qui vous apporte de la joie : c\'est un mariage sans attente de costume.',
+    home_style: 'Code vestimentaire : coloré, confortable pour l\'été et des chaussures plates pour marcher sur l\'herbe. Portez quelque chose qui vous rend heureux·se, pas besoin d\'un costume.',
     home_weekend: 'Programme du week-end',
     home_weekend_1_intro: '',
     home_weekend_1_link: '',
     home_weekend_1_suffix: '',
     home_weekend_2: 'Samedi : cérémonie et réception.',
-    home_weekend_3: 'Dimanche : brunch détendu puis départs.',
+    home_weekend_3: 'Dimanche : brunch',
     home_weekend_faq_link: 'Des questions sur le week-end ? Voir la FAQ.',
     rsvp_title: 'RSVP dîner du vendredi',
     rsvp_intro: '',
@@ -181,19 +183,20 @@ const translations = {
     rsvp_status_error: '',
     photo_nitray: 'Château de Nitray',
     travel_title: 'Voyage et hébergement',
-    travel_intro: 'Le Château de Nitray se situe entre Tours et Amboise. La gare la plus proche est Saint-Martin-le-Beau, tandis qu\'Amboise et Saint-Pierre-des-Corps sont les grandes gares les plus pratiques pour les transferts et la location de voiture.',
+    travel_intro: 'Le Château de Nitray se situe proche de Tours et d\'Amboise. La gare la plus proche est Saint-Martin-le-Beau, tandis qu\'Amboise et Saint-Pierre-des-Corps sont les grandes gares les plus pratiques pour les transferts et la location de voiture.',
     travel_paris_title: 'Depuis Paris',
-    travel_paris_1: 'Itinéraire le plus rapide pour la plupart des invités : Paris Montparnasse → Saint-Pierre-des-Corps (gare TGV de Tours).',
+    travel_paris_1: 'Itinéraire le plus rapide pour la plupart des invités : Paris Montparnasse → Saint-Pierre-des-Corps ou la gare TGV de Tours.',
     travel_paris_link: 'Réserver ce trajet sur SNCF Connect',
     travel_paris_2: 'Route : environ 2 h 30 à 3 h 00 selon le trafic.',
     travel_paris_3: 'La location de voiture est disponible autour de Tours / Saint-Pierre-des-Corps, et le transfert local vers le Château de Nitray prend en général 20 à 25 minutes.',
     travel_lille_title: 'Depuis Lille',
-    travel_lille_1: 'Train : souvent via Paris puis TGV vers Tours (environ 3 h 00 à 4 h 00 au total).',
-    travel_lille_2: 'Route : environ 4 h 30 à 5 h 30 selon le trafic.',
-    travel_lille_3: 'Saint-Martin-le-Beau reste la gare la plus proche du lieu.',
+    travel_lille_1: 'Train direct pour Saint-Pierre-des-Corps.',
+    travel_lille_2: 'Route : environ 5 à 6 h selon le trafic.',
+    travel_lille_3: 'Puis location de voiture ou taxi.',
     travel_stay_title: 'Où loger',
-    travel_stay_1: 'Amboise : centre accessible à pied et large choix d\'hôtels et de maisons d\'hôtes.',
-    travel_stay_2: 'Loches : charmante ville médiévale avec des options plus calmes et de caractère.',
+    travel_stay_1: 'Depuis le Royaume-Uni : Eurostar de Londres à Paris puis suivez les indications depuis Paris. Merci de ne pas prendre l\'avion.',
+    travel_stay_2: 'Amboise et Loches sont deux villes très jolies à visiter, avec de beaux bâtiments historiques, et toutes les deux à environ trente minutes en voiture du Château de Nitray.',
+    travel_stay_3: 'Nous avons une préférence personnelle pour Amboise, qui se trouve directement sur la Loire.',
     photo_amboise: 'Amboise',
     travel_tip: 'Août est la haute saison en Loire : réservez hébergement et trains le plus tôt possible.',
     travel_sncf_link: 'Réserver des trains sur SNCF Connect',
@@ -203,9 +206,10 @@ const translations = {
     venue_website: 'Consulter le site officiel',
     venue_notes_title: 'Infos sur le lieu',
     venue_notes_1: 'Espaces extérieurs pour la cérémonie de mariage et les cocktails',
-    venue_notes_2: 'Espaces intérieurs pour le dîner et la danse',
+    venue_notes_2: 'Espaces intérieurs pour le dîner et la danse (accessibles par des escaliers uniquement)',
     venue_notes_3: 'Une petite forêt pour une promenade l\'après-midi',
     venue_notes_4: 'Apportez des vêtements adaptés aux fortes chaleurs et des chaussures confortables',
+    venue_notes_5: 'Les espaces intérieurs sont accessibles uniquement par des escaliers. Contactez-nous si vous pensez avoir besoin d\'aide pour les emprunter.',
     venue_address_title: 'Adresse',
     venue_address_line: 'Château de Nitray, 31 Nitray, 37270 Athée-sur-Cher, France',
     venue_address_more: 'Plus d\'informations sur le château et le domaine sont disponibles au lien ci-dessous.',
@@ -218,8 +222,8 @@ const translations = {
     schedule_3: 'Dîner - à l\'intérieur au deuxième étage, notez qu\'il y a 10 à 20 marches',
     schedule_4: 'Danse - dans une salle attenante au dîner',
     schedule_5: 'Collations et rafraîchissements',
-    schedule_6: 'La fête se termine',
-    loire_title: 'Que faire en Loire',
+    schedule_6: '',
+    loire_title: 'Que faire dans la Loire',
     loire_intro: 'Transformez ce voyage de mariage en séjour en Loire : vins, vélo, châteaux et villages historiques.',
     loire_wine_title: 'Dégustations de vin',
     loire_wine_1: 'La Touraine et Vouvray sont proches, avec visites de caves et dégustations guidées.',
@@ -227,14 +231,14 @@ const translations = {
     loire_wine_3: 'Des circuits de dégustation d\'une demi-journée ou d\'une journée sont possibles depuis Amboise et Tours.',
     loire_velo_title: 'La Loire à Vélo',
     loire_velo_1: 'Un itinéraire cyclable très connu avec des sections majoritairement plates en bord de Loire.',
-    loire_velo_2: 'Idéal pour des groupes mixtes ; les vélos électriques sont faciles à trouver.',
+    loire_velo_2: 'Accessible pour tous les niveaux avec possibilité de louer des vélos électriques.',
     loire_velo_3: 'Parfait pour une sortie d\'une journée ou un itinéraire sur plusieurs jours.',
     loire_trip_title: 'Itinéraire vélo 3 jours (depuis Amboise)',
-    loire_trip_1: 'Jour 1 : boucle Amboise - Chenonceaux (vignes et villages).',
-    loire_trip_2: 'Jour 2 : Amboise - Tours par La Loire à Vélo.',
-    loire_trip_3: 'Jour 3 : Tours - Vouvray puis retour vers Amboise.',
+    loire_trip_1: 'Itinéraire à confirmer, on vous conseille de prendre un logement sur Amboise pour la durée du mariage et jusqu\'au mercredi matin car ce sera notre point de départ.',
+    loire_trip_2: '',
+    loire_trip_3: '',
     photo_velo: 'La Loire à Vélo',
-    photo_welcome: 'Un accueil de notre famille à la vôtre',
+    photo_welcome: '',
     gifts_title: 'Cadeaux',
     gifts_intro: 'Votre présence est déjà le plus beau cadeau. Si vous souhaitez offrir quelque chose, les options suivantes nous feraient très plaisir. Les cadeaux n\'ont pas besoin d\'être chers. Nous aimerions surtout quelque chose qui nous fasse penser à vous. Par exemple, nous serions ravis de recevoir un livre d\'occasion que vous avez lu, avec un mot expliquant ce qu\'il représente pour vous.',
     gifts_intro_2: 'Nous mettrons cette page à jour avec un lien pour choisir des options de cadeaux et suivre ce que les autres ont déjà sélectionné.',
@@ -262,12 +266,10 @@ const translations = {
     faq_a_arrival: 'L\'arrivée des invités commence à 14 h 30. Nous vous recommandons d\'arriver à l\'heure afin que tout le monde soit confortablement installé avant la cérémonie.',
     faq_q_children: 'Les enfants sont-ils les bienvenus ?',
     faq_a_children: 'Oui - les enfants sont les bienvenus.',
-    faq_q_plus_one: 'Puis-je venir avec un plus-un ?',
-    faq_a_plus_one: 'Les plus-uns sont bienvenus lorsqu\'ils sont inclus.',
     faq_rsvp_note: 'Merci de vérifier que tous les invités (y compris les enfants et les plus-uns) sont bien inclus dans votre RSVP. En cas de doute, contactez-nous et nous confirmerons.',
     faq_transport_title: 'Transport',
     faq_q_car: 'Ai-je besoin d\'une voiture ?',
-    faq_a_car: 'Pas nécessairement. De nombreux invités se débrouilleront parfaitement avec les trains et les taxis, mais louer une voiture offre plus de flexibilité. Nous prévoyons de proposer des navettes vers et depuis les villes voisines la nuit du mariage.',
+    faq_a_car: 'Pas nécessairement. De nombreux invités se débrouilleront parfaitement avec les trains et les taxis, mais louer une voiture offre plus de flexibilité. Nous prévoyons de proposer un service de navettes limité vers et depuis les villes voisines la nuit du mariage.',
     faq_q_parking: 'Y aura-t-il un parking sur place ?',
     faq_a_parking: 'Oui - un parking sera disponible.',
     faq_q_dress: 'Code vestimentaire ?',
@@ -297,6 +299,7 @@ function applyTranslations(lang) {
     const text = translations[lang][key];
     if (text !== undefined) {
       node.textContent = text;
+      node.hidden = text === '';
     }
   });
 
@@ -304,11 +307,17 @@ function applyTranslations(lang) {
   if (homeWeekendRsvpLine) {
     homeWeekendRsvpLine.hidden = !isEnglish;
   }
+  if (homeGalleryCaption) {
+    homeGalleryCaption.hidden = !translations[lang].photo_welcome;
+  }
   if (rsvpTabButton) {
     rsvpTabButton.hidden = !isEnglish;
   }
   if (rsvpPanel) {
     rsvpPanel.hidden = !isEnglish;
+  }
+  if (scheduleEvent6) {
+    scheduleEvent6.hidden = !translations[lang].schedule_6;
   }
   if (!isEnglish) {
     const activeTab = document.querySelector('.tab.is-active');
@@ -431,4 +440,3 @@ if (rsvpForm) {
     }
   });
 }
-
