@@ -36,14 +36,14 @@ const translations = {
     home_venue: 'Venue: Chateau de Nitray, Athee-sur-Cher',
     home_style: 'Dress code: Colorful, comfortable for the summer and flat shoes for walking on grass. Wear something that brings you joy: this is a wedding with no expectation of a suit.',
     home_weekend: 'Weekend Plan',
-    home_weekend_1_intro: 'Friday: dinner for those travelling (',
+    home_weekend_1_intro: 'Friday: informal dinner at the castle from a food van, likely serving crepes (',
     home_weekend_1_link: 'RSVP here',
     home_weekend_1_suffix: ').',
     home_weekend_2: 'Saturday: ceremony and reception.',
     home_weekend_3: 'Sunday: relaxed brunch and departures.',
     home_weekend_faq_link: 'Questions about the weekend? See FAQ.',
     rsvp_title: 'Friday Dinner RSVP',
-    rsvp_intro: 'Please let us know how many guests are joining Friday dinner and any dietary requirements.',
+    rsvp_intro: 'Please let us know how many guests are joining the Friday food-van dinner at the castle and any dietary requirements.',
     rsvp_name_label: 'Your name',
     rsvp_attendees_label: 'Number of attendees',
     rsvp_dietary_label: 'Dietary information',
@@ -79,7 +79,7 @@ const translations = {
     venue_website: 'Visit the official website',
     venue_notes_title: 'Venue Notes',
     venue_notes_1: 'Outdoor spaces for the wedding ceremony and cocktails',
-    venue_notes_2: 'Indoor spaces for the dinner and dancing that follows',
+    venue_notes_2: 'Dinner outside in the chateau courtyard, with indoor space for dancing afterward',
     venue_notes_3: 'A small forest for an afternoon stroll',
     venue_notes_4: 'Bring clothing that is appropriate for hot weather and comfortable shoes',
     venue_notes_5: 'Indoor spaces are only accessible via stairs. Please contact us if you think you might need support in navigating stairs.',
@@ -91,8 +91,8 @@ const translations = {
     schedule_intro: 'Here is a rough schedule of events for the day. Times are approximate and may shift slightly.',
     schedule_1: 'Ceremony - In an aisle of trees behind the castle (wear appropriate shoes)',
     schedule_2: 'Photos, cocktails, snacks and games - in the castle courtyard',
-    schedule_3: 'Dinner - indoors on the second floor, note there are 10-20 stairs',
-    schedule_4: 'Dancing - in a room adjoining the dinner',
+    schedule_3: 'Dinner - outside in the chateau courtyard',
+    schedule_4: 'Dancing - indoors after dinner',
     schedule_5: 'Snacks and refreshments',
     schedule_6: 'The party concludes',
     loire_title: 'What to Do in the Loire',
@@ -111,26 +111,13 @@ const translations = {
     loire_trip_3: '',
     photo_velo: 'La Loire a Velo',
     gifts_title: 'Gifts',
-    gifts_intro: 'Your presence is the best gift. If you would like to give something, the following suggestions would be lovely. Gifts need not be expensive, and there is no need to choose from the ideas below. We would love something that reminds us of you. For example, we would love a second-hand book you have read, with a note explaining what it means to you. If you have your own idea for something you think we might like, we would be absolutely delighted, so please do not feel bound by the list below.',
-    gifts_intro_2: 'We will update this page with a link to view gift suggestions and track what others have selected.',
-    gifts_personal_title: 'Personal gifts',
-    gifts_personal_1: 'A second-hand book you have read, with a short personal note',
-    gifts_personal_2: 'Something artistic that you have liked (or made!) and a description of why',
-    gifts_exp_title: 'Experiences & Memories',
-    gifts_exp_1: 'Contribution to our honeymoon and family trip: we are planning two weeks in Japan and two weeks in Australia, including a celebration with John\'s family.',
-    gifts_exp_2: 'Cooking or wine-tasting experience to enjoy together',
-    gifts_exp_3: 'Theatre, concert, or museum tickets',
-    gifts_exp_4: 'Contribution toward future travels',
-    gifts_home_title: 'Home & Everyday Life',
-    gifts_home_1: 'High-quality bed linen or towels.',
-    gifts_home_2: 'Tableware or glassware for hosting.',
-    gifts_home_3: 'Cookware or kitchen tools we will use for years to come.',
-    gifts_home_4: 'Artwork or books for our home.',
-    gifts_home_5: 'Coffee machine.',
-    gifts_home_6: 'Dog backpack.',
-    gifts_charity_title: 'Charities',
-    gifts_charity_1: 'GiveWell',
-    gifts_charity_2: 'CoefficientGiving',
+    gifts_intro: 'Coordinating non-overlap of gifts and transport to the UK from the wedding will be challenging. Our preference is that those who want to give a gift make a transfer to either of the following bank accounts with a description of their preferred gift as the reference.',
+    gifts_fr_bank_title: 'French bank details',
+    gifts_uk_bank_title: 'UK bank details',
+    gifts_iban_label: 'IBAN',
+    gifts_bic_label: 'BIC',
+    gifts_sort_code_label: 'Sort code',
+    gifts_account_label: 'Account number',
     faq_title: 'FAQ',
     faq_general_title: 'General',
     faq_q_arrival: 'When should we arrive for the ceremony?',
@@ -166,22 +153,22 @@ const translations = {
     home_venue: 'Lieu : Château de Nitray, Athée-sur-Cher',
     home_style: 'Code vestimentaire : coloré, confortable pour l\'été et des chaussures plates pour marcher sur l\'herbe. Portez quelque chose qui vous rend heureux·se, pas besoin d\'un costume.',
     home_weekend: 'Programme du week-end',
-    home_weekend_1_intro: '',
+    home_weekend_1_intro: 'Vendredi : dîner informel au château avec un food truck, probablement des crêpes.',
     home_weekend_1_link: '',
     home_weekend_1_suffix: '',
     home_weekend_2: 'Samedi : cérémonie et réception.',
     home_weekend_3: 'Dimanche : brunch',
     home_weekend_faq_link: 'Des questions sur le week-end ? Voir la FAQ.',
     rsvp_title: 'RSVP dîner du vendredi',
-    rsvp_intro: '',
-    rsvp_name_label: '',
+    rsvp_intro: 'Merci de nous indiquer combien de personnes participeront au dîner du vendredi au château avec le food truck, ainsi que toute information alimentaire.',
+    rsvp_name_label: 'Votre nom',
     rsvp_attendees_label: 'Nombre de participant·es',
     rsvp_dietary_label: 'Informations alimentaires',
-    rsvp_submit: '',
-    rsvp_status_sending: '',
-    rsvp_status_sent: '',
-    rsvp_status_setup: '',
-    rsvp_status_error: '',
+    rsvp_submit: 'Envoyer le RSVP',
+    rsvp_status_sending: 'Envoi du RSVP...',
+    rsvp_status_sent: 'Merci ! Votre RSVP a bien été envoyé.',
+    rsvp_status_setup: 'Le formulaire RSVP n\'est pas encore configuré. Ajoutez l\'URL Google Apps Script dans script.js.',
+    rsvp_status_error: 'Désolé, un problème est survenu lors de l\'envoi de votre RSVP. Veuillez réessayer.',
     photo_nitray: 'Château de Nitray',
     travel_title: 'Voyage et hébergement',
     travel_intro: 'Le Château de Nitray se situe proche de Tours et d\'Amboise. La gare la plus proche est Saint-Martin-le-Beau, tandis qu\'Amboise et Saint-Pierre-des-Corps sont les grandes gares les plus pratiques pour les transferts et la location de voiture.',
@@ -208,7 +195,7 @@ const translations = {
     venue_website: 'Consulter le site officiel',
     venue_notes_title: 'Infos sur le lieu',
     venue_notes_1: 'Espaces extérieurs pour la cérémonie de mariage et les cocktails',
-    venue_notes_2: 'Espaces intérieurs pour le dîner et la danse (accessibles par des escaliers uniquement)',
+    venue_notes_2: 'Dîner dehors dans la cour du château, avec un espace intérieur pour la danse ensuite',
     venue_notes_3: 'Une petite forêt pour une promenade l\'après-midi',
     venue_notes_4: 'Apportez des vêtements adaptés aux fortes chaleurs et des chaussures confortables',
     venue_notes_5: 'Les espaces intérieurs sont accessibles uniquement par des escaliers. Contactez-nous si vous pensez avoir besoin d\'aide pour les emprunter.',
@@ -221,8 +208,8 @@ const translations = {
     schedule_intro: 'Voici un programme approximatif des événements de la journée. Les horaires sont approximatifs et peuvent varier légèrement.',
     schedule_1: 'Cérémonie - Dans une allée d\'arbres derrière le château (portez des chaussures adaptées)',
     schedule_2: 'Photos, cocktails, collations et jeux - dans la cour du château',
-    schedule_3: 'Dîner - à l\'intérieur au deuxième étage, notez qu\'il y a 10 à 20 marches',
-    schedule_4: 'Danse - dans une salle attenante au dîner',
+    schedule_3: 'Dîner - dehors dans la cour du château',
+    schedule_4: 'Danse - à l\'intérieur après le dîner',
     schedule_5: 'Collations et rafraîchissements',
     schedule_6: '',
     loire_title: 'Que faire dans la Loire',
@@ -242,26 +229,13 @@ const translations = {
     photo_velo: 'La Loire à Vélo',
     photo_welcome: '',
     gifts_title: 'Cadeaux',
-    gifts_intro: 'Votre présence est déjà le plus beau cadeau. Si vous souhaitez offrir quelque chose, les options suivantes nous feraient très plaisir. Peu importe la valeur financière, nous aimerions surtout quelque chose qui nous fasse penser à vous, que ce soit sur la liste ou non. Par exemple, nous serions ravis de recevoir un livre d\'occasion que vous avez lu, avec un mot expliquant ce qu\'il représente pour vous.',
-    gifts_intro_2: 'Nous mettrons cette page à jour avec un lien pour choisir des options de cadeaux et suivre ce que les autres ont déjà sélectionné.',
-    gifts_personal_title: 'Cadeaux personnels',
-    gifts_personal_1: 'Un livre d\'occasion que vous avez lu, avec un petit mot personnel.',
-    gifts_personal_2: 'Quelque chose d\'artistique que vous avez aimé (ou créé), avec un mot expliquant pourquoi.',
-    gifts_exp_title: 'Expériences et souvenirs',
-    gifts_exp_1: 'Contribution à notre voyage de noces : nous prévoyons de faire une petite cérémonie en Australie avec la famille de John et de faire une escale de deux semaines au Japon ou en Corée du Sud (quitte à prendre l\'avion, autant le rentabiliser !).',
-    gifts_exp_2: 'Expérience de cuisine ou de dégustation de vin à vivre ensemble.',
-    gifts_exp_3: 'Billets de théâtre, concert ou musée.',
-    gifts_exp_4: 'Contribution à de futurs voyages.',
-    gifts_home_title: 'Maison et vie quotidienne',
-    gifts_home_1: 'Linge de lit ou serviettes de haute qualité.',
-    gifts_home_2: 'Vaisselle ou verrerie pour recevoir.',
-    gifts_home_3: 'Ustensiles de cuisine qui durent toute la vie.',
-    gifts_home_4: 'Oeuvres d\'art ou livres pour notre maison.',
-    gifts_home_5: 'Machine à café.',
-    gifts_home_6: 'Sac à dos pour chien.',
-    gifts_charity_title: 'Associations',
-    gifts_charity_1: 'GiveWell',
-    gifts_charity_2: 'CoefficientGiving',
+    gifts_intro: 'Coordonner les cadeaux pour éviter les doublons, puis les transporter au Royaume-Uni après le mariage, sera compliqué. Notre préférence est que les personnes qui souhaitent offrir un cadeau fassent un virement vers l\'un des comptes bancaires ci-dessous, en indiquant en référence une description du cadeau souhaité.',
+    gifts_fr_bank_title: 'Coordonnées bancaires françaises',
+    gifts_uk_bank_title: 'Coordonnées bancaires britanniques',
+    gifts_iban_label: 'IBAN',
+    gifts_bic_label: 'BIC',
+    gifts_sort_code_label: 'Sort code',
+    gifts_account_label: 'Numéro de compte',
     faq_title: 'FAQ',
     faq_general_title: 'Informations générales',
     faq_q_arrival: 'Quand devons-nous arriver pour la cérémonie ?',
@@ -305,23 +279,23 @@ function applyTranslations(lang) {
     }
   });
 
-  const isEnglish = lang === 'en';
+  const hasRsvp = Boolean(translations[lang].tab_rsvp);
   if (homeWeekendRsvpLine) {
-    homeWeekendRsvpLine.hidden = !isEnglish;
+    homeWeekendRsvpLine.hidden = !translations[lang].home_weekend_1_intro;
   }
   if (homeGalleryCaption) {
     homeGalleryCaption.hidden = !translations[lang].photo_welcome;
   }
   if (rsvpTabButton) {
-    rsvpTabButton.hidden = !isEnglish;
+    rsvpTabButton.hidden = !hasRsvp;
   }
   if (rsvpPanel) {
-    rsvpPanel.hidden = !isEnglish;
+    rsvpPanel.hidden = !hasRsvp;
   }
   if (scheduleEvent6) {
     scheduleEvent6.hidden = !translations[lang].schedule_6;
   }
-  if (!isEnglish) {
+  if (!hasRsvp) {
     const activeTab = document.querySelector('.tab.is-active');
     if (activeTab && activeTab.dataset.tab === 'rsvp') {
       activateTab('home');

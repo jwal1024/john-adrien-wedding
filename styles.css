@@ -300,6 +300,35 @@ h2 {
   margin-bottom: 0.35rem;
 }
 
+.gift-accounts {
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.bank-details {
+  display: grid;
+  gap: 0.7rem;
+  margin: 0.8rem 0 0;
+}
+
+.bank-details div {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.bank-details dt {
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.bank-details dd {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
 ul {
   padding-left: 1rem;
   margin: 0.55rem 0;
