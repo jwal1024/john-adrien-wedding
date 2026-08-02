@@ -3,19 +3,11 @@ const panels = document.querySelectorAll('.panel');
 const langButtons = document.querySelectorAll('.lang-btn');
 const i18nNodes = document.querySelectorAll('[data-i18n]');
 const countdownEl = document.getElementById('countdown');
-const homeWeekendRsvpLine = document.getElementById('home-weekend-rsvp');
 const homeGalleryCaption = document.getElementById('home-gallery-caption');
-const rsvpTabButton = document.getElementById('tab-rsvp');
-const rsvpPanel = document.getElementById('rsvp');
-const rsvpForm = document.getElementById('rsvp-form');
-const rsvpStatus = document.getElementById('rsvp-status');
-const rsvpQuickLinks = document.querySelectorAll('a[href="#rsvp"]');
 const faqQuickLinks = document.querySelectorAll('a[href="#faq"]');
 const scheduleEvent6 = document.getElementById('schedule-event-6');
-let rsvpSubmitting = false;
 
 let currentLang = 'en';
-const GOOGLE_SHEETS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbw7JUFnr5pbad78peYSqojd5Fm0jHe730wEUpeIB78FHo11tJFhwjjWPv37ar3TMabzYQ/exec';
 
 const translations = {
   en: {
@@ -28,7 +20,6 @@ const translations = {
     tab_loire: 'What to Do in the Loire',
     tab_gifts: 'Gifts',
     tab_faq: 'FAQ',
-    tab_rsvp: 'Friday RSVP',
     home_title: 'Welcome',
     home_intro: 'We are delighted to invite you to celebrate our marriage at Chateau de Nitray. Join us for a summer weekend of ceremony, food, dancing, and time together in the Loire Valley.',
     home_big_day: 'The Big Day',
@@ -36,24 +27,12 @@ const translations = {
     home_venue: 'Venue: Chateau de Nitray, Athee-sur-Cher',
     home_style: 'Dress code: Colorful, comfortable for the summer and flat shoes for walking on grass. Wear something that brings you joy: this is a wedding with no expectation of a suit.',
     home_weekend: 'Weekend Plan',
-    home_weekend_1_intro: 'Friday: informal dinner at the castle from a food van, likely serving crepes (',
-    home_weekend_1_link: 'RSVP here',
-    home_weekend_1_suffix: ').',
     home_weekend_2: 'Saturday: ceremony and reception.',
     home_weekend_3: 'Sunday: relaxed brunch and departures.',
     home_weekend_faq_link: 'Questions about the weekend? See FAQ.',
-    rsvp_title: 'Friday Dinner RSVP',
-    rsvp_intro: 'Please let us know how many guests are joining the Friday food-van dinner at the castle and any dietary requirements.',
-    rsvp_name_label: 'Your name',
-    rsvp_attendees_label: 'Number of attendees',
-    rsvp_dietary_label: 'Dietary information',
-    rsvp_submit: 'Send RSVP',
-    rsvp_status_sending: 'Sending RSVP...',
-    rsvp_status_sent: 'Thanks! Your RSVP has been sent.',
-    rsvp_status_setup: 'RSVP endpoint not configured yet. Add your Google Apps Script URL in script.js.',
-    rsvp_status_error: 'Sorry, there was a problem sending your RSVP. Please try again.',
     photo_nitray: 'Chateau de Nitray',
     photo_welcome: 'A welcome from our family to yours',
+    photo_signing: 'All the documents are signed, so we are ready for a big party on the 8th!',
     travel_title: 'Travel & Accommodation',
     travel_intro: 'Chateau de Nitray is in the Loire Valley between Tours and Amboise. The closest rail stop is Saint-Martin-le-Beau, while Amboise and Saint-Pierre-des-Corps are the easiest larger stations for onward transfers and car hire.',
     travel_paris_title: 'From Paris',
@@ -105,10 +84,6 @@ const translations = {
     loire_velo_1: 'A famous long-distance cycle route with mostly flat riverside sections.',
     loire_velo_2: 'Great for mixed groups; e-bikes are widely available.',
     loire_velo_3: 'Suitable for easy day rides or multi-day itineraries.',
-    loire_trip_title: 'Cycling itinerary 3 days (from Amboise)',
-    loire_trip_1: 'If you have not already, please join our WhatsApp group for the full itinerary and updates: https://chat.whatsapp.com/DolwDhT19I2ELwQ7SfMl7E',
-    loire_trip_2: '',
-    loire_trip_3: '',
     photo_velo: 'La Loire a Velo',
     gifts_title: 'Gifts',
     gifts_intro: 'Your presence is the best gift. If you would like to give something, we would love something that reminds us of you - gifts need not be expensive. For example, we would love a second-hand book you have read, with a note explaining what it means to you. If you have your own idea for something you think we might like, we would be absolutely delighted, so please do not feel bound by any suggestions.',
@@ -167,7 +142,6 @@ const translations = {
     tab_loire: 'Que faire dans la Loire',
     tab_gifts: 'Cadeaux',
     tab_faq: 'FAQ',
-    tab_rsvp: '',
     home_title: 'Bienvenue',
     home_intro: 'Nous sommes ravis de vous inviter à célébrer notre mariage au Château de Nitray. Rejoignez-nous pour un week-end d\'été en Val de Loire, avec cérémonie, repas, danse et moments partagés.',
     home_big_day: 'Le grand jour',
@@ -175,22 +149,9 @@ const translations = {
     home_venue: 'Lieu : Château de Nitray, Athée-sur-Cher',
     home_style: 'Code vestimentaire : coloré, confortable pour l\'été et des chaussures plates pour marcher sur l\'herbe. Portez quelque chose qui vous rend heureux·se, pas besoin d\'un costume.',
     home_weekend: 'Programme du week-end',
-    home_weekend_1_intro: 'Vendredi : dîner informel au château avec un food truck, probablement des crêpes.',
-    home_weekend_1_link: '',
-    home_weekend_1_suffix: '',
     home_weekend_2: 'Samedi : cérémonie et réception.',
     home_weekend_3: 'Dimanche : brunch',
     home_weekend_faq_link: 'Des questions sur le week-end ? Voir la FAQ.',
-    rsvp_title: 'RSVP dîner du vendredi',
-    rsvp_intro: 'Merci de nous indiquer combien de personnes participeront au dîner du vendredi au château avec le food truck, ainsi que toute information alimentaire.',
-    rsvp_name_label: 'Votre nom',
-    rsvp_attendees_label: 'Nombre de participant·es',
-    rsvp_dietary_label: 'Informations alimentaires',
-    rsvp_submit: 'Envoyer le RSVP',
-    rsvp_status_sending: 'Envoi du RSVP...',
-    rsvp_status_sent: 'Merci ! Votre RSVP a bien été envoyé.',
-    rsvp_status_setup: 'Le formulaire RSVP n\'est pas encore configuré. Ajoutez l\'URL Google Apps Script dans script.js.',
-    rsvp_status_error: 'Désolé, un problème est survenu lors de l\'envoi de votre RSVP. Veuillez réessayer.',
     photo_nitray: 'Château de Nitray',
     travel_title: 'Voyage et hébergement',
     travel_intro: 'Le Château de Nitray se situe proche de Tours et d\'Amboise. La gare la plus proche est Saint-Martin-le-Beau, tandis qu\'Amboise et Saint-Pierre-des-Corps sont les grandes gares les plus pratiques pour les transferts et la location de voiture.',
@@ -244,12 +205,9 @@ const translations = {
     loire_velo_1: 'Un itinéraire cyclable très connu avec des sections majoritairement plates en bord de Loire.',
     loire_velo_2: 'Accessible pour tous les niveaux avec possibilité de louer des vélos électriques.',
     loire_velo_3: 'Parfait pour une sortie d\'une journée ou un itinéraire sur plusieurs jours.',
-    loire_trip_title: 'Itinéraire vélo 3 jours (depuis Amboise)',
-    loire_trip_1: 'Si ce n\'est pas déjà fait, merci de rejoindre notre groupe WhatsApp pour l\'itinéraire complet et les mises à jour : https://chat.whatsapp.com/DolwDhT19I2ELwQ7SfMl7E',
-    loire_trip_2: '',
-    loire_trip_3: '',
     photo_velo: 'La Loire à Vélo',
     photo_welcome: '',
+    photo_signing: 'Tous les documents sont signés : place à une grande fête le 8 !',
     gifts_title: 'Cadeaux',
     gifts_intro: 'Votre présence est le plus beau des cadeaux. Si vous souhaitez néanmoins nous offrir quelque chose, nous serions ravis d\'un cadeau qui vous rappelle à nous - pas besoin de dépenser une fortune. Par exemple, nous serions touchés de recevoir un livre d\'occasion que vous avez lu, accompagné d\'un mot expliquant ce qu\'il représente pour vous. Si vous avez votre propre idée de cadeau qui pourrait nous plaire, nous en serions absolument enchantés, alors ne vous sentez surtout pas limité·e par ces quelques exemples.',
     gifts_personal_title: 'Cadeaux personnels',
@@ -323,27 +281,11 @@ function applyTranslations(lang) {
     }
   });
 
-  const hasRsvp = Boolean(translations[lang].tab_rsvp);
-  if (homeWeekendRsvpLine) {
-    homeWeekendRsvpLine.hidden = !translations[lang].home_weekend_1_intro;
-  }
   if (homeGalleryCaption) {
     homeGalleryCaption.hidden = !translations[lang].photo_welcome;
   }
-  if (rsvpTabButton) {
-    rsvpTabButton.hidden = !hasRsvp;
-  }
-  if (rsvpPanel) {
-    rsvpPanel.hidden = !hasRsvp;
-  }
   if (scheduleEvent6) {
     scheduleEvent6.hidden = !translations[lang].schedule_6;
-  }
-  if (!hasRsvp) {
-    const activeTab = document.querySelector('.tab.is-active');
-    if (activeTab && activeTab.dataset.tab === 'rsvp') {
-      activateTab('home');
-    }
   }
 
   document.documentElement.lang = lang;
@@ -358,15 +300,6 @@ langButtons.forEach((button) => {
       btn.classList.toggle('is-active', btn === button);
     });
     applyTranslations(currentLang);
-  });
-});
-
-rsvpQuickLinks.forEach((link) => {
-  link.addEventListener('click', (event) => {
-    event.preventDefault();
-    activateTab('rsvp');
-    const target = document.getElementById('rsvp-form-en');
-    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 });
 
@@ -402,61 +335,3 @@ function updateCountdown() {
 
 applyTranslations(currentLang);
 setInterval(updateCountdown, 60000);
-
-if (rsvpForm) {
-  rsvpForm.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    if (!rsvpStatus) return;
-    if (rsvpSubmitting) return;
-    rsvpSubmitting = true;
-
-    const formData = new FormData(rsvpForm);
-    const payload = {
-      timestamp: new Date().toISOString(),
-      name: String(formData.get('name') || '').trim(),
-      attendees: String(formData.get('attendees') || '').trim(),
-      dietary: String(formData.get('dietary') || '').trim(),
-      lang: currentLang
-    };
-
-    const fields = rsvpForm.querySelectorAll('input, textarea, button');
-    fields.forEach((field) => {
-      field.disabled = true;
-    });
-    rsvpStatus.textContent = translations[currentLang].rsvp_status_sending || '';
-
-    if (!GOOGLE_SHEETS_WEB_APP_URL) {
-      rsvpForm.classList.remove('is-complete');
-      rsvpStatus.textContent = translations[currentLang].rsvp_status_setup || '';
-      fields.forEach((field) => {
-        field.disabled = false;
-      });
-      rsvpSubmitting = false;
-      return;
-    }
-
-    try {
-      const response = await fetch(GOOGLE_SHEETS_WEB_APP_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify(payload)
-      });
-
-      if (!response.ok) {
-        throw new Error('RSVP request failed');
-      }
-
-      rsvpForm.classList.add('is-complete');
-      rsvpStatus.textContent = translations[currentLang].rsvp_status_sent || '';
-      rsvpForm.reset();
-    } catch (error) {
-      rsvpForm.classList.remove('is-complete');
-      rsvpStatus.textContent = translations[currentLang].rsvp_status_error || '';
-      fields.forEach((field) => {
-        field.disabled = false;
-      });
-    } finally {
-      rsvpSubmitting = false;
-    }
-  });
-}

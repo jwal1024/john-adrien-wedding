@@ -41,7 +41,6 @@
     <button class="tab" data-tab="loire" data-i18n="tab_loire">What to Do in the Loire</button>
     <button class="tab" data-tab="gifts" data-i18n="tab_gifts">Gifts</button>
     <button class="tab" data-tab="faq" data-i18n="tab_faq">FAQ</button>
-    <button class="tab" data-tab="rsvp" id="tab-rsvp" data-i18n="tab_rsvp">Friday RSVP</button>
   </nav>
 
   <main>
@@ -59,14 +58,15 @@
         </article>
         <article class="card">
           <h3 data-i18n="home_weekend">Weekend Plan</h3>
-          <p id="home-weekend-rsvp">
-            <span data-i18n="home_weekend_1_intro"></span><a href="#rsvp" data-i18n="home_weekend_1_link">RSVP here</a><span data-i18n="home_weekend_1_suffix"></span>
-          </p>
           <p data-i18n="home_weekend_2"></p>
           <p data-i18n="home_weekend_3"></p>
           <p class="home-faq-link"><a href="#faq" data-i18n="home_weekend_faq_link">See FAQ</a></p>
         </article>
       </div>
+      <figure class="photo photo-signing">
+        <img src="signing.jpg" alt="John and Adrien after signing their marriage documents" loading="lazy" />
+        <figcaption data-i18n="photo_signing">All the documents are signed, so we are ready for a big party on the 8th!</figcaption>
+      </figure>
       <div class="home-gallery">
         <figure>
           <img src="adrien_1.jpeg" alt="Adrien family photo 1" loading="lazy" />
@@ -210,14 +210,6 @@
             <li data-i18n="loire_velo_3"></li>
           </ul>
         </article>
-        <article class="card">
-          <h3 data-i18n="loire_trip_title">3-Day Cycle Trip (From Amboise)</h3>
-          <ul>
-            <li data-i18n="loire_trip_1"></li>
-            <li data-i18n="loire_trip_2"></li>
-            <li data-i18n="loire_trip_3"></li>
-          </ul>
-        </article>
       </div>
       <figure class="photo photo-loire">
         <img src="https://paulette.bike/app/uploads/2025/03/1-9be6aa1096308eee7dce377f32957252.png.avif" alt="La Loire a Velo" loading="lazy" />
@@ -337,23 +329,6 @@
         John: <a href="tel:+447707231969">+44 7707 231969</a> |
         <a href="mailto:johnhenrywalker.4@gmail.com">johnhenrywalker.4@gmail.com</a>
       </p>
-    </section>
-
-    <section class="panel" id="rsvp">
-      <h2 data-i18n="rsvp_title">Friday Dinner RSVP</h2>
-      <p data-i18n="rsvp_intro">Please let us know how many guests are joining Friday dinner and any dietary requirements.</p>
-      <section class="rsvp-card" id="rsvp-form-en">
-        <form class="rsvp-form" id="rsvp-form" action="#" method="post">
-          <label for="rsvp-name" data-i18n="rsvp_name_label">Your name</label>
-          <input id="rsvp-name" name="name" type="text" required />
-          <label for="rsvp-attendees" data-i18n="rsvp_attendees_label">Number of attendees</label>
-          <input id="rsvp-attendees" name="attendees" type="number" min="1" step="1" required />
-          <label for="rsvp-dietary" data-i18n="rsvp_dietary_label">Dietary information</label>
-          <textarea id="rsvp-dietary" name="dietary" rows="3"></textarea>
-          <button type="submit" class="rsvp-submit" data-i18n="rsvp_submit">Send RSVP</button>
-          <p id="rsvp-status" aria-live="polite"></p>
-        </form>
-      </section>
     </section>
   </main>
 
