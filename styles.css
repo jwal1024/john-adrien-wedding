@@ -351,7 +351,7 @@ ul {
 
 /* Shift the crop window down slightly so less headroom/ceiling shows and more of the signing table is visible */
 .photo-signing img {
-  object-position: center 60%;
+  object-position: center 55%;
 }
 
 /* Slightly smaller height for the Loire image to avoid scaling blur */
