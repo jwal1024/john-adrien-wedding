@@ -468,7 +468,7 @@ ul {
   border-radius: 8px;
 }
 
-.rsvp-card {
+.form-card {
   margin-top: 1rem;
   border: 1px solid #e9dfd3;
   border-radius: 16px;
@@ -477,26 +477,120 @@ ul {
   box-shadow: 0 8px 18px rgba(58, 40, 22, 0.07);
 }
 
-.rsvp-card h3 {
+.form-card h3 {
   margin: 0 0 0.5rem;
 }
 
-.rsvp-form {
+.carpool-mode-toggle {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.carpool-mode-btn {
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 0.5rem 0.92rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.carpool-mode-btn.is-active {
+  background: var(--accent-soft);
+  border-color: var(--accent-soft);
+}
+
+.carpool-tracker {
+  margin-top: 1rem;
+}
+
+.carpool-ride {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.carpool-ride-direction {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.carpool-ride-datetime {
+  color: var(--muted);
+  font-size: 0.92rem;
+  margin: 0;
+}
+
+.carpool-ride-seats {
+  margin: 0;
+  font-weight: 600;
+}
+
+.carpool-ride-passengers {
+  margin: 0;
+}
+
+.carpool-ride-passengers ul {
+  margin: 0.3rem 0 0;
+}
+
+.carpool-contacts {
+  background: linear-gradient(90deg, #fbf4ea 0%, #fff9f2 100%);
+  border-left: 4px solid var(--accent-soft);
+  padding: 0.7rem 0.85rem;
+  border-radius: 8px;
+  margin: 0;
+}
+
+.carpool-contacts p {
+  margin: 0 0 0.3rem;
+}
+
+.carpool-contacts ul {
+  margin: 0;
+  padding-left: 1rem;
+}
+
+.carpool-joined-badge {
+  display: inline-block;
+  width: fit-content;
+  background: var(--accent-soft);
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 0.25rem 0.7rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.carpool-join-form {
+  margin-top: 0.3rem;
+}
+
+.data-form {
   display: grid;
   gap: 0.5rem;
 }
 
-.rsvp-form.is-complete > :not(#rsvp-status) {
+.data-form[hidden] {
   display: none;
 }
 
-.rsvp-form label {
+.data-form.is-complete > :not(.form-status) {
+  display: none;
+}
+
+.data-form label {
   font-weight: 600;
   color: var(--muted);
 }
 
-.rsvp-form input,
-.rsvp-form textarea {
+.data-form input,
+.data-form select,
+.data-form textarea {
   width: 100%;
   border: 1px solid var(--line);
   border-radius: 10px;
@@ -506,7 +600,7 @@ ul {
   background: #fff;
 }
 
-.rsvp-submit {
+.form-submit {
   border: 1px solid var(--line);
   background: #fff;
   color: var(--ink);
@@ -517,17 +611,18 @@ ul {
   width: fit-content;
 }
 
-.rsvp-submit:hover,
-.rsvp-submit:focus-visible {
+.form-submit:hover,
+.form-submit:focus-visible {
   border-color: var(--accent-soft);
 }
 
-#rsvp-status {
+.form-status {
   min-height: 1.2em;
   margin: 0.2rem 0 0;
   color: var(--muted);
   font-size: 0.95rem;
 }
+
 
 .faq-contact-line {
   margin: 0.45rem 0 0;

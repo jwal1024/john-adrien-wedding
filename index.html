@@ -36,6 +36,7 @@
   <nav class="tabs" aria-label="Wedding information tabs">
     <button class="tab is-active" data-tab="home" data-i18n="tab_home">Home</button>
     <button class="tab" data-tab="travel" data-i18n="tab_travel">Travel & Accommodation</button>
+    <button class="tab" data-tab="carpool" data-i18n="tab_carpool">Carpool</button>
     <button class="tab" data-tab="venue" data-i18n="tab_venue">Chateau Nitray</button>
     <button class="tab" data-tab="schedule" data-i18n="tab_schedule">Schedule</button>
     <button class="tab" data-tab="loire" data-i18n="tab_loire">What to Do in the Loire</button>
@@ -119,6 +120,87 @@
       </figure>
       <p class="tip" data-i18n="travel_tip"></p>
       <p><a href="https://www.sncf-connect.com/" target="_blank" rel="noopener" data-i18n="travel_sncf_link">Book trains on SNCF Connect</a></p>
+    </section>
+
+    <section class="panel" id="carpool">
+      <h2 data-i18n="carpool_title">Carpool</h2>
+      <p data-i18n="carpool_intro"></p>
+
+      <div class="carpool-tracker">
+        <h3 data-i18n="carpool_tracker_title">Current rides</h3>
+        <p class="tip" id="carpool-loading" data-i18n="carpool_loading">Loading current rides...</p>
+
+        <h4 data-i18n="carpool_offers_subtitle">Rides offered</h4>
+        <p class="tip" id="carpool-empty" data-i18n="carpool_empty" hidden>No rides posted yet - be the first!</p>
+        <div class="cards carpool-list" id="carpool-list"></div>
+
+        <h4 data-i18n="carpool_requests_subtitle">Ride requests</h4>
+        <p class="tip" id="carpool-requests-empty" data-i18n="carpool_requests_empty" hidden>No requests posted yet.</p>
+        <div class="cards carpool-list" id="carpool-requests-list"></div>
+      </div>
+
+      <div class="form-card">
+        <div class="carpool-mode-toggle" role="group" aria-label="Carpool mode">
+          <button type="button" class="carpool-mode-btn is-active" data-carpool-mode="offer" data-i18n="carpool_mode_offer">I have spare seats</button>
+          <button type="button" class="carpool-mode-btn" data-carpool-mode="request" data-i18n="carpool_mode_request">I need a ride</button>
+        </div>
+
+        <form class="data-form" id="carpool-offer-form">
+          <h3 data-i18n="carpool_offer_heading">Offer a ride</h3>
+          <label for="carpool-offer-direction" data-i18n="carpool_direction_label">Direction</label>
+          <select id="carpool-offer-direction" required>
+            <option value="tours-nitray" data-i18n="carpool_dir_tours_nitray">Tours &rarr; Chateau de Nitray</option>
+            <option value="amboise-nitray" data-i18n="carpool_dir_amboise_nitray">Amboise &rarr; Chateau de Nitray</option>
+            <option value="nitray-tours" data-i18n="carpool_dir_nitray_tours">Chateau de Nitray &rarr; Tours</option>
+            <option value="nitray-amboise" data-i18n="carpool_dir_nitray_amboise">Chateau de Nitray &rarr; Amboise</option>
+          </select>
+          <label for="carpool-offer-day" data-i18n="carpool_day_label">Day</label>
+          <select id="carpool-offer-day" required>
+            <option value="2026-08-07" data-i18n="carpool_day_friday">Friday 7 August</option>
+            <option value="2026-08-08" data-i18n="carpool_day_saturday">Saturday 8 August</option>
+            <option value="2026-08-09" data-i18n="carpool_day_sunday">Sunday 9 August</option>
+          </select>
+          <label for="carpool-offer-time" data-i18n="carpool_time_label">Time</label>
+          <select id="carpool-offer-time" required></select>
+          <label for="carpool-offer-name" data-i18n="carpool_name_label">Your name</label>
+          <input id="carpool-offer-name" type="text" required />
+          <label for="carpool-offer-contact" data-i18n="carpool_contact_label">Phone or email</label>
+          <input id="carpool-offer-contact" type="text" required />
+          <label for="carpool-offer-seats" data-i18n="carpool_seats_label">Number of spare seats</label>
+          <input id="carpool-offer-seats" type="number" min="1" step="1" required />
+          <label for="carpool-offer-notes" data-i18n="carpool_notes_label">Notes (optional)</label>
+          <textarea id="carpool-offer-notes" rows="2"></textarea>
+          <button type="submit" class="form-submit" data-i18n="carpool_offer_submit">Offer this ride</button>
+          <p class="form-status" id="carpool-offer-status" aria-live="polite"></p>
+        </form>
+
+        <form class="data-form" id="carpool-request-form" hidden>
+          <h3 data-i18n="carpool_request_heading">Request a ride</h3>
+          <label for="carpool-request-direction" data-i18n="carpool_direction_label">Direction</label>
+          <select id="carpool-request-direction" required>
+            <option value="tours-nitray" data-i18n="carpool_dir_tours_nitray">Tours &rarr; Chateau de Nitray</option>
+            <option value="amboise-nitray" data-i18n="carpool_dir_amboise_nitray">Amboise &rarr; Chateau de Nitray</option>
+            <option value="nitray-tours" data-i18n="carpool_dir_nitray_tours">Chateau de Nitray &rarr; Tours</option>
+            <option value="nitray-amboise" data-i18n="carpool_dir_nitray_amboise">Chateau de Nitray &rarr; Amboise</option>
+          </select>
+          <label for="carpool-request-day" data-i18n="carpool_day_label">Day</label>
+          <select id="carpool-request-day" required>
+            <option value="2026-08-07" data-i18n="carpool_day_friday">Friday 7 August</option>
+            <option value="2026-08-08" data-i18n="carpool_day_saturday">Saturday 8 August</option>
+            <option value="2026-08-09" data-i18n="carpool_day_sunday">Sunday 9 August</option>
+          </select>
+          <label for="carpool-request-time" data-i18n="carpool_time_label">Time</label>
+          <select id="carpool-request-time" required></select>
+          <label for="carpool-request-name" data-i18n="carpool_name_label">Your name</label>
+          <input id="carpool-request-name" type="text" required />
+          <label for="carpool-request-contact" data-i18n="carpool_contact_label">Phone or email</label>
+          <input id="carpool-request-contact" type="text" required />
+          <label for="carpool-request-notes" data-i18n="carpool_notes_label">Notes (optional)</label>
+          <textarea id="carpool-request-notes" rows="2"></textarea>
+          <button type="submit" class="form-submit" data-i18n="carpool_request_submit">Request this ride</button>
+          <p class="form-status" id="carpool-request-status" aria-live="polite"></p>
+        </form>
+      </div>
     </section>
 
     <section class="panel" id="venue">

@@ -6,8 +6,22 @@ const countdownEl = document.getElementById('countdown');
 const homeGalleryCaption = document.getElementById('home-gallery-caption');
 const faqQuickLinks = document.querySelectorAll('a[href="#faq"]');
 const scheduleEvent6 = document.getElementById('schedule-event-6');
+const carpoolModeButtons = document.querySelectorAll('.carpool-mode-btn');
+const carpoolOfferForm = document.getElementById('carpool-offer-form');
+const carpoolOfferStatus = document.getElementById('carpool-offer-status');
+const carpoolOfferTimeSelect = document.getElementById('carpool-offer-time');
+const carpoolRequestForm = document.getElementById('carpool-request-form');
+const carpoolRequestStatus = document.getElementById('carpool-request-status');
+const carpoolRequestTimeSelect = document.getElementById('carpool-request-time');
+const carpoolList = document.getElementById('carpool-list');
+const carpoolLoading = document.getElementById('carpool-loading');
+const carpoolEmpty = document.getElementById('carpool-empty');
+const carpoolRequestsList = document.getElementById('carpool-requests-list');
+const carpoolRequestsEmpty = document.getElementById('carpool-requests-empty');
 
 let currentLang = 'en';
+// Paste the deployed Apps Script Web App URL here (see carpool-apps-script.gs for the backend to deploy).
+const CARPOOL_APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzgBX5twsUrd6CYUajoTTSDnTu0svEXNy_pQYHO_g3xO23dzPNOxBmp8CiKCXSXO2Qq/exec'
 
 const translations = {
   en: {
@@ -15,6 +29,7 @@ const translations = {
     date_line: 'Saturday, 8 August 2026 | Chateau de Nitray | Touraine, France',
     tab_home: 'Home',
     tab_travel: 'Travel & Accommodation',
+    tab_carpool: 'Carpool',
     tab_venue: 'Chateau Nitray',
     tab_schedule: 'Schedule',
     tab_loire: 'What to Do in the Loire',
@@ -52,6 +67,55 @@ const translations = {
     photo_amboise: 'Amboise',
     travel_tip: 'August is high season in the Loire, so book accommodation and trains early.',
     travel_sncf_link: 'Book trains on SNCF Connect',
+    carpool_title: 'Carpool',
+    carpool_intro: 'Use this page to organise car sharing between the stations, Amboise, and the chateau. Offer spare seats if you are driving, or post a request if you need a lift.',
+    carpool_mode_offer: 'I have spare seats',
+    carpool_mode_request: 'I need a ride',
+    carpool_offer_heading: 'Offer a ride',
+    carpool_request_heading: 'Request a ride',
+    carpool_direction_label: 'Direction',
+    carpool_dir_tours_nitray: 'Tours → Chateau de Nitray',
+    carpool_dir_amboise_nitray: 'Amboise → Chateau de Nitray',
+    carpool_dir_nitray_tours: 'Chateau de Nitray → Tours',
+    carpool_dir_nitray_amboise: 'Chateau de Nitray → Amboise',
+    carpool_day_label: 'Day',
+    carpool_day_friday: 'Friday 7 August',
+    carpool_day_saturday: 'Saturday 8 August',
+    carpool_day_sunday: 'Sunday 9 August',
+    carpool_time_label: 'Time',
+    carpool_name_label: 'Your name',
+    carpool_contact_label: 'Phone or email',
+    carpool_seats_label: 'Number of spare seats',
+    carpool_notes_label: 'Notes (optional)',
+    carpool_offer_submit: 'Offer this ride',
+    carpool_offer_status_sending: 'Posting your ride...',
+    carpool_offer_status_sent: 'Thanks! Your ride has been posted below.',
+    carpool_offer_status_setup: 'Carpool backend not configured yet. Add the Apps Script URL in script.js.',
+    carpool_offer_status_error: 'Sorry, there was a problem posting your ride. Please try again.',
+    carpool_request_submit: 'Request this ride',
+    carpool_request_status_sending: 'Posting your request...',
+    carpool_request_status_sent: 'Thanks! Your request has been posted below.',
+    carpool_request_status_error: 'Sorry, there was a problem posting your request. Please try again.',
+    carpool_tracker_title: 'Current rides',
+    carpool_loading: 'Loading current rides...',
+    carpool_offers_subtitle: 'Rides offered',
+    carpool_empty: 'No rides posted yet - be the first!',
+    carpool_requests_subtitle: 'Ride requests',
+    carpool_requests_empty: 'No requests posted yet.',
+    carpool_seats_offered_singular: 'spare seat offered by',
+    carpool_seats_offered_plural: 'spare seats offered by',
+    carpool_passengers_label: 'Passengers:',
+    carpool_no_passengers: 'No one has joined yet.',
+    carpool_driver_contact_label: 'Driver contact',
+    carpool_passenger_contact_label: 'Passenger contacts',
+    carpool_requester_contact_label: 'Contact',
+    carpool_join_button: 'Join this car',
+    carpool_join_name_placeholder: 'Your name',
+    carpool_join_contact_placeholder: 'Phone or email',
+    carpool_join_confirm: 'Confirm',
+    carpool_join_status_sending: 'Joining...',
+    carpool_join_status_error: 'Sorry, there was a problem joining this car. Please try again.',
+    carpool_joined_badge: 'You are in this car',
     venue_title: 'Chateau de Nitray',
     venue_history_title: 'History',
     venue_history_1: 'Nitray castle was built in the 16th century, likely to replace an older castle dating from the 13th century. Nitray castle has produced wines since the 18th century. It follows traditional wine production methods, and only produces organic wines. These wines carry the label of the local region, AOC Touraine.',
@@ -137,6 +201,7 @@ const translations = {
     date_line: 'Samedi 8 août 2026 | Château de Nitray | Touraine, France',
     tab_home: 'Accueil',
     tab_travel: 'Voyage et hébergement',
+    tab_carpool: 'Covoiturage',
     tab_venue: 'Château Nitray',
     tab_schedule: 'Programme',
     tab_loire: 'Que faire dans la Loire',
@@ -172,6 +237,55 @@ const translations = {
     photo_amboise: 'Amboise',
     travel_tip: 'Août est la haute saison en Loire : réservez hébergement et trains le plus tôt possible.',
     travel_sncf_link: 'Réserver des trains sur SNCF Connect',
+    carpool_title: 'Covoiturage',
+    carpool_intro: 'Utilisez cette page pour organiser le covoiturage entre les gares, Amboise et le château. Proposez des places libres si vous conduisez, ou publiez une demande si vous avez besoin d\'être déposé·e.',
+    carpool_mode_offer: 'J\'ai des places libres',
+    carpool_mode_request: 'J\'ai besoin d\'un trajet',
+    carpool_offer_heading: 'Proposer un trajet',
+    carpool_request_heading: 'Demander un trajet',
+    carpool_direction_label: 'Direction',
+    carpool_dir_tours_nitray: 'Tours → Château de Nitray',
+    carpool_dir_amboise_nitray: 'Amboise → Château de Nitray',
+    carpool_dir_nitray_tours: 'Château de Nitray → Tours',
+    carpool_dir_nitray_amboise: 'Château de Nitray → Amboise',
+    carpool_day_label: 'Jour',
+    carpool_day_friday: 'Vendredi 7 août',
+    carpool_day_saturday: 'Samedi 8 août',
+    carpool_day_sunday: 'Dimanche 9 août',
+    carpool_time_label: 'Heure',
+    carpool_name_label: 'Votre nom',
+    carpool_contact_label: 'Téléphone ou email',
+    carpool_seats_label: 'Nombre de places disponibles',
+    carpool_notes_label: 'Remarques (facultatif)',
+    carpool_offer_submit: 'Proposer ce trajet',
+    carpool_offer_status_sending: 'Publication du trajet...',
+    carpool_offer_status_sent: 'Merci ! Votre trajet a été publié ci-dessous.',
+    carpool_offer_status_setup: 'Le service de covoiturage n\'est pas encore configuré. Ajoutez l\'URL Apps Script dans script.js.',
+    carpool_offer_status_error: 'Désolé, un problème est survenu lors de la publication de votre trajet. Veuillez réessayer.',
+    carpool_request_submit: 'Demander ce trajet',
+    carpool_request_status_sending: 'Publication de votre demande...',
+    carpool_request_status_sent: 'Merci ! Votre demande a été publiée ci-dessous.',
+    carpool_request_status_error: 'Désolé, un problème est survenu lors de la publication de votre demande. Veuillez réessayer.',
+    carpool_tracker_title: 'Trajets en cours',
+    carpool_loading: 'Chargement des trajets en cours...',
+    carpool_offers_subtitle: 'Trajets proposés',
+    carpool_empty: 'Aucun trajet publié pour le moment - soyez le premier !',
+    carpool_requests_subtitle: 'Demandes de trajet',
+    carpool_requests_empty: 'Aucune demande publiée pour le moment.',
+    carpool_seats_offered_singular: 'place disponible proposée par',
+    carpool_seats_offered_plural: 'places disponibles proposées par',
+    carpool_passengers_label: 'Passagers :',
+    carpool_no_passengers: 'Personne n\'a encore rejoint ce trajet.',
+    carpool_driver_contact_label: 'Contact du conducteur ou de la conductrice',
+    carpool_passenger_contact_label: 'Contacts des passagers',
+    carpool_requester_contact_label: 'Contact',
+    carpool_join_button: 'Rejoindre ce trajet',
+    carpool_join_name_placeholder: 'Votre nom',
+    carpool_join_contact_placeholder: 'Téléphone ou email',
+    carpool_join_confirm: 'Confirmer',
+    carpool_join_status_sending: 'Inscription en cours...',
+    carpool_join_status_error: 'Désolé, un problème est survenu. Veuillez réessayer.',
+    carpool_joined_badge: 'Vous faites partie de ce trajet',
     venue_title: 'Château de Nitray',
     venue_history_title: 'Histoire',
     venue_history_1: 'Le château de Nitray a été construit au XVIe siècle, probablement pour remplacer un ancien château datant du XIIIe siècle. Le château de Nitray produit du vin depuis le XVIIIe siècle. Il suit des méthodes de production traditionnelles et ne produit que des vins biologiques. Ces vins portent l\'appellation de la région locale, AOC Touraine.',
@@ -291,6 +405,7 @@ function applyTranslations(lang) {
   document.documentElement.lang = lang;
   document.body.dataset.lang = lang;
   updateCountdown();
+  renderCarpoolRides();
 }
 
 langButtons.forEach((button) => {
@@ -311,6 +426,432 @@ faqQuickLinks.forEach((link) => {
     if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 });
+
+const CARPOOL_JOINED_STORAGE_KEY = 'carpool_joined_ride_ids';
+const CARPOOL_DIRECTION_KEYS = {
+  'tours-nitray': 'carpool_dir_tours_nitray',
+  'amboise-nitray': 'carpool_dir_amboise_nitray',
+  'nitray-tours': 'carpool_dir_nitray_tours',
+  'nitray-amboise': 'carpool_dir_nitray_amboise'
+};
+
+let carpoolData = [];
+let carpoolOfferSubmitting = false;
+let carpoolRequestSubmitting = false;
+
+function getJoinedRideIds() {
+  try {
+    const raw = window.localStorage.getItem(CARPOOL_JOINED_STORAGE_KEY);
+    return raw ? JSON.parse(raw) : [];
+  } catch (error) {
+    return [];
+  }
+}
+
+function addJoinedRideId(rideId) {
+  const ids = getJoinedRideIds();
+  if (!ids.includes(rideId)) {
+    ids.push(rideId);
+    try {
+      window.localStorage.setItem(CARPOOL_JOINED_STORAGE_KEY, JSON.stringify(ids));
+    } catch (error) {
+      // localStorage unavailable - contact reveal just won't persist across reloads
+    }
+  }
+}
+
+function formatCarpoolDateTime(lang, value) {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return value;
+  const locale = lang === 'fr' ? 'fr-FR' : 'en-GB';
+  return date.toLocaleString(locale, {
+    weekday: 'short',
+    day: 'numeric',
+    month: 'short',
+    hour: '2-digit',
+    minute: '2-digit'
+  });
+}
+
+function formatCarpoolSeatsLine(lang, seats, driverName) {
+  const key = Number(seats) === 1 ? 'carpool_seats_offered_singular' : 'carpool_seats_offered_plural';
+  return `${seats} ${translations[lang][key]} ${driverName}`;
+}
+
+function buildCarpoolDirectionEl(lang, ride) {
+  const directionEl = document.createElement('p');
+  directionEl.className = 'carpool-ride-direction';
+  const directionKey = CARPOOL_DIRECTION_KEYS[ride.direction];
+  directionEl.textContent = directionKey ? translations[lang][directionKey] : ride.direction;
+  return directionEl;
+}
+
+function buildCarpoolDatetimeEl(lang, ride) {
+  const datetimeEl = document.createElement('p');
+  datetimeEl.className = 'carpool-ride-datetime';
+  datetimeEl.textContent = formatCarpoolDateTime(lang, ride.datetime);
+  return datetimeEl;
+}
+
+function buildCarpoolOfferCard(lang, ride, joinedIds) {
+  const card = document.createElement('article');
+  card.className = 'card carpool-ride';
+  card.dataset.rideId = ride.rideId;
+
+  card.appendChild(buildCarpoolDirectionEl(lang, ride));
+  card.appendChild(buildCarpoolDatetimeEl(lang, ride));
+
+  const seatsEl = document.createElement('p');
+  seatsEl.className = 'carpool-ride-seats';
+  seatsEl.textContent = formatCarpoolSeatsLine(lang, ride.spareSeats, ride.driverName);
+  card.appendChild(seatsEl);
+
+  if (ride.notes) {
+    const notesEl = document.createElement('p');
+    notesEl.className = 'carpool-ride-notes';
+    notesEl.textContent = ride.notes;
+    card.appendChild(notesEl);
+  }
+
+  const passengersEl = document.createElement('p');
+  passengersEl.className = 'carpool-ride-passengers';
+  const passengersLabel = document.createElement('strong');
+  passengersLabel.textContent = translations[lang].carpool_passengers_label;
+  passengersEl.appendChild(passengersLabel);
+  if (ride.passengers.length > 0) {
+    const list = document.createElement('ul');
+    ride.passengers.forEach((passenger) => {
+      const li = document.createElement('li');
+      li.textContent = passenger.name;
+      list.appendChild(li);
+    });
+    passengersEl.appendChild(list);
+  } else {
+    const noneEl = document.createElement('span');
+    noneEl.textContent = ` ${translations[lang].carpool_no_passengers}`;
+    passengersEl.appendChild(noneEl);
+  }
+  card.appendChild(passengersEl);
+
+  const isJoined = joinedIds.includes(ride.rideId);
+
+  if (isJoined) {
+    const contactsEl = document.createElement('div');
+    contactsEl.className = 'carpool-contacts';
+
+    const driverContactEl = document.createElement('p');
+    const driverLabel = document.createElement('strong');
+    driverLabel.textContent = `${translations[lang].carpool_driver_contact_label}: `;
+    driverContactEl.appendChild(driverLabel);
+    driverContactEl.appendChild(document.createTextNode(`${ride.driverName} - ${ride.driverContact}`));
+    contactsEl.appendChild(driverContactEl);
+
+    if (ride.passengers.length > 0) {
+      const passengerContactLabel = document.createElement('p');
+      const strongLabel = document.createElement('strong');
+      strongLabel.textContent = translations[lang].carpool_passenger_contact_label;
+      passengerContactLabel.appendChild(strongLabel);
+      contactsEl.appendChild(passengerContactLabel);
+
+      const contactList = document.createElement('ul');
+      ride.passengers.forEach((passenger) => {
+        const li = document.createElement('li');
+        li.textContent = `${passenger.name} - ${passenger.contact}`;
+        contactList.appendChild(li);
+      });
+      contactsEl.appendChild(contactList);
+    }
+
+    card.appendChild(contactsEl);
+
+    const badge = document.createElement('span');
+    badge.className = 'carpool-joined-badge';
+    badge.textContent = translations[lang].carpool_joined_badge;
+    card.appendChild(badge);
+  } else {
+    const joinButton = document.createElement('button');
+    joinButton.type = 'button';
+    joinButton.className = 'form-submit';
+    joinButton.textContent = translations[lang].carpool_join_button;
+
+    const joinForm = document.createElement('form');
+    joinForm.className = 'data-form carpool-join-form';
+    joinForm.hidden = true;
+
+    const nameInput = document.createElement('input');
+    nameInput.type = 'text';
+    nameInput.required = true;
+    nameInput.placeholder = translations[lang].carpool_join_name_placeholder;
+    joinForm.appendChild(nameInput);
+
+    const contactInput = document.createElement('input');
+    contactInput.type = 'text';
+    contactInput.required = true;
+    contactInput.placeholder = translations[lang].carpool_join_contact_placeholder;
+    joinForm.appendChild(contactInput);
+
+    const confirmButton = document.createElement('button');
+    confirmButton.type = 'submit';
+    confirmButton.className = 'form-submit';
+    confirmButton.textContent = translations[lang].carpool_join_confirm;
+    joinForm.appendChild(confirmButton);
+
+    const statusEl = document.createElement('p');
+    statusEl.className = 'form-status';
+    joinForm.appendChild(statusEl);
+
+    joinButton.addEventListener('click', () => {
+      joinButton.hidden = true;
+      joinForm.hidden = false;
+      nameInput.focus();
+    });
+
+    joinForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      handleCarpoolJoinSubmit(ride.rideId, nameInput.value.trim(), contactInput.value.trim(), statusEl, joinForm);
+    });
+
+    card.appendChild(joinButton);
+    card.appendChild(joinForm);
+  }
+
+  return card;
+}
+
+function buildCarpoolRequestCard(lang, ride) {
+  const card = document.createElement('article');
+  card.className = 'card carpool-ride';
+  card.dataset.rideId = ride.rideId;
+
+  card.appendChild(buildCarpoolDirectionEl(lang, ride));
+  card.appendChild(buildCarpoolDatetimeEl(lang, ride));
+
+  const requesterEl = document.createElement('p');
+  requesterEl.className = 'carpool-ride-seats';
+  requesterEl.textContent = ride.requesterName;
+  card.appendChild(requesterEl);
+
+  if (ride.notes) {
+    const notesEl = document.createElement('p');
+    notesEl.className = 'carpool-ride-notes';
+    notesEl.textContent = ride.notes;
+    card.appendChild(notesEl);
+  }
+
+  const contactEl = document.createElement('p');
+  const contactLabel = document.createElement('strong');
+  contactLabel.textContent = `${translations[lang].carpool_requester_contact_label}: `;
+  contactEl.appendChild(contactLabel);
+  contactEl.appendChild(document.createTextNode(ride.requesterContact));
+  card.appendChild(contactEl);
+
+  return card;
+}
+
+function renderCarpoolRides() {
+  const lang = currentLang;
+  const joinedIds = getJoinedRideIds();
+  const offers = carpoolData.filter((ride) => ride.type !== 'request');
+  const requests = carpoolData.filter((ride) => ride.type === 'request');
+
+  if (carpoolList) {
+    carpoolList.innerHTML = '';
+    if (carpoolEmpty) carpoolEmpty.hidden = offers.length > 0;
+    offers.forEach((ride) => {
+      carpoolList.appendChild(buildCarpoolOfferCard(lang, ride, joinedIds));
+    });
+  }
+
+  if (carpoolRequestsList) {
+    carpoolRequestsList.innerHTML = '';
+    if (carpoolRequestsEmpty) carpoolRequestsEmpty.hidden = requests.length > 0;
+    requests.forEach((ride) => {
+      carpoolRequestsList.appendChild(buildCarpoolRequestCard(lang, ride));
+    });
+  }
+}
+
+async function fetchCarpoolData() {
+  if (!CARPOOL_APPS_SCRIPT_URL) {
+    if (carpoolLoading) {
+      carpoolLoading.hidden = false;
+      carpoolLoading.textContent = translations[currentLang].carpool_offer_status_setup;
+    }
+    return;
+  }
+
+  try {
+    const response = await fetch(CARPOOL_APPS_SCRIPT_URL);
+    if (!response.ok) throw new Error('Carpool fetch failed');
+    const data = await response.json();
+    carpoolData = data.rides || [];
+    if (carpoolLoading) carpoolLoading.hidden = true;
+    renderCarpoolRides();
+  } catch (error) {
+    if (carpoolLoading) {
+      carpoolLoading.hidden = false;
+      carpoolLoading.textContent = translations[currentLang].carpool_offer_status_error;
+    }
+  }
+}
+
+function populateCarpoolTimeOptions(selectEl) {
+  if (!selectEl) return;
+  for (let hour = 0; hour < 24; hour += 1) {
+    for (let minute = 0; minute < 60; minute += 15) {
+      const value = `${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`;
+      const option = document.createElement('option');
+      option.value = value;
+      option.textContent = value;
+      selectEl.appendChild(option);
+    }
+  }
+}
+
+populateCarpoolTimeOptions(carpoolOfferTimeSelect);
+populateCarpoolTimeOptions(carpoolRequestTimeSelect);
+
+carpoolModeButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    const mode = button.dataset.carpoolMode;
+    carpoolModeButtons.forEach((btn) => {
+      btn.classList.toggle('is-active', btn === button);
+    });
+    if (carpoolOfferForm) carpoolOfferForm.hidden = mode !== 'offer';
+    if (carpoolRequestForm) carpoolRequestForm.hidden = mode !== 'request';
+  });
+});
+
+async function handleCarpoolOfferSubmit(event) {
+  event.preventDefault();
+  if (!carpoolOfferForm || !carpoolOfferStatus) return;
+  if (carpoolOfferSubmitting) return;
+  carpoolOfferSubmitting = true;
+
+  const payload = {
+    action: 'offerRide',
+    direction: document.getElementById('carpool-offer-direction').value,
+    datetime: `${document.getElementById('carpool-offer-day').value}T${document.getElementById('carpool-offer-time').value}`,
+    driverName: document.getElementById('carpool-offer-name').value.trim(),
+    driverContact: document.getElementById('carpool-offer-contact').value.trim(),
+    spareSeats: document.getElementById('carpool-offer-seats').value,
+    notes: document.getElementById('carpool-offer-notes').value.trim()
+  };
+
+  const fields = carpoolOfferForm.querySelectorAll('input, select, textarea, button');
+  fields.forEach((field) => { field.disabled = true; });
+  carpoolOfferStatus.textContent = translations[currentLang].carpool_offer_status_sending;
+
+  if (!CARPOOL_APPS_SCRIPT_URL) {
+    carpoolOfferStatus.textContent = translations[currentLang].carpool_offer_status_setup;
+    fields.forEach((field) => { field.disabled = false; });
+    carpoolOfferSubmitting = false;
+    return;
+  }
+
+  try {
+    const response = await fetch(CARPOOL_APPS_SCRIPT_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload)
+    });
+    if (!response.ok) throw new Error('Carpool offer failed');
+    const data = await response.json();
+    carpoolData = data.rides || [];
+    if (data.rideId) addJoinedRideId(data.rideId);
+    renderCarpoolRides();
+    carpoolOfferStatus.textContent = translations[currentLang].carpool_offer_status_sent;
+    carpoolOfferForm.reset();
+  } catch (error) {
+    carpoolOfferStatus.textContent = translations[currentLang].carpool_offer_status_error;
+  } finally {
+    fields.forEach((field) => { field.disabled = false; });
+    carpoolOfferSubmitting = false;
+  }
+}
+
+async function handleCarpoolRequestSubmit(event) {
+  event.preventDefault();
+  if (!carpoolRequestForm || !carpoolRequestStatus) return;
+  if (carpoolRequestSubmitting) return;
+  carpoolRequestSubmitting = true;
+
+  const payload = {
+    action: 'requestRide',
+    direction: document.getElementById('carpool-request-direction').value,
+    datetime: `${document.getElementById('carpool-request-day').value}T${document.getElementById('carpool-request-time').value}`,
+    requesterName: document.getElementById('carpool-request-name').value.trim(),
+    requesterContact: document.getElementById('carpool-request-contact').value.trim(),
+    notes: document.getElementById('carpool-request-notes').value.trim()
+  };
+
+  const fields = carpoolRequestForm.querySelectorAll('input, select, textarea, button');
+  fields.forEach((field) => { field.disabled = true; });
+  carpoolRequestStatus.textContent = translations[currentLang].carpool_request_status_sending;
+
+  if (!CARPOOL_APPS_SCRIPT_URL) {
+    carpoolRequestStatus.textContent = translations[currentLang].carpool_offer_status_setup;
+    fields.forEach((field) => { field.disabled = false; });
+    carpoolRequestSubmitting = false;
+    return;
+  }
+
+  try {
+    const response = await fetch(CARPOOL_APPS_SCRIPT_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload)
+    });
+    if (!response.ok) throw new Error('Carpool request failed');
+    const data = await response.json();
+    carpoolData = data.rides || [];
+    renderCarpoolRides();
+    carpoolRequestStatus.textContent = translations[currentLang].carpool_request_status_sent;
+    carpoolRequestForm.reset();
+  } catch (error) {
+    carpoolRequestStatus.textContent = translations[currentLang].carpool_request_status_error;
+  } finally {
+    fields.forEach((field) => { field.disabled = false; });
+    carpoolRequestSubmitting = false;
+  }
+}
+
+async function handleCarpoolJoinSubmit(rideId, name, contact, statusEl, joinForm) {
+  if (!name || !contact) return;
+  const fields = joinForm.querySelectorAll('input, button');
+  fields.forEach((field) => { field.disabled = true; });
+  statusEl.textContent = translations[currentLang].carpool_join_status_sending;
+
+  if (!CARPOOL_APPS_SCRIPT_URL) {
+    statusEl.textContent = translations[currentLang].carpool_offer_status_setup;
+    fields.forEach((field) => { field.disabled = false; });
+    return;
+  }
+
+  try {
+    const response = await fetch(CARPOOL_APPS_SCRIPT_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify({ action: 'joinRide', rideId, name, contact })
+    });
+    if (!response.ok) throw new Error('Carpool join failed');
+    const data = await response.json();
+    carpoolData = data.rides || [];
+    addJoinedRideId(rideId);
+    renderCarpoolRides();
+  } catch (error) {
+    statusEl.textContent = translations[currentLang].carpool_join_status_error;
+    fields.forEach((field) => { field.disabled = false; });
+  }
+}
+
+if (carpoolOfferForm) {
+  carpoolOfferForm.addEventListener('submit', handleCarpoolOfferSubmit);
+}
+
+if (carpoolRequestForm) {
+  carpoolRequestForm.addEventListener('submit', handleCarpoolRequestSubmit);
+}
 
 const weddingDate = new Date('2026-08-08T14:00:00+02:00');
 
@@ -335,3 +876,6 @@ function updateCountdown() {
 
 applyTranslations(currentLang);
 setInterval(updateCountdown, 60000);
+
+fetchCarpoolData();
+setInterval(fetchCarpoolData, 45000);
